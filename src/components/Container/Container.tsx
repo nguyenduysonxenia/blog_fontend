@@ -1,34 +1,11 @@
-import Banner from "../Banner/Banner";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
-import ListPost from "../ListPost/ListPost";
-import Related from "../Related/Related";
-import TopBar from "../TopBar/TopBar";
+import Signin from '../Signin/Signin';
+import Signup from '../Signup/Signup';
 
-const Container = () => { 
-    return(
-        <div className="">
-            <div className="row">
-                <TopBar />
-            </div>
-            <div className="row">
-                <Header />
-            </div>
-            <div className="row">
-                <Banner />
-            </div>
-            <div className="row">
-                <div className="col">
-                    <ListPost />
-                </div>
-                <div className="col">
-                    <Related />
-                </div>
-            </div>
-            <div className="row">
-                <Footer />
-            </div>
-        </div>
-    )
-}
+const Container = () => {
+  return (
+    <div className="">
+      <Signin />
+    </div>
+  );
+};
 export default Container;
