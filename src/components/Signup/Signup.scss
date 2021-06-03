@@ -1,0 +1,30 @@
+.form-container {
+  height: 620px;
+  width: 400px;
+  padding: 32px;
+  margin: 100px auto 0 auto;
+  background-color: rgb(253, 253, 255);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  .image-logo {
+    height: 100px;
+    width: 100px;
+    margin: auto 100px;
+  }
+  .label {
+    font-size: large;
+    color: rgb(66, 68, 68);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  Button[type='submit'] {
+    width: 160px;
+    height: 50px;
+    margin: auto 100px;
+    background-color: rgb(50, 65, 60);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+  }
+  .test {
+    color: #d41a1a;
+  }
+}
