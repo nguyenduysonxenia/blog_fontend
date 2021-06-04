@@ -7,7 +7,8 @@ import Pagination from '../../components/Pagination/Pagination'
 import SocialLink from '../../components/SocialLink/Social'
 import ListPostNew from '../../components/ListPostNew/ListPostnew'
 import Footer from '../../components/Footer/Footer'
-const index = (props: any) => {
+
+function index(props: any) {
   return (
       <React.Fragment>
         <div className="container">

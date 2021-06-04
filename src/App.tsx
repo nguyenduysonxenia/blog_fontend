@@ -2,11 +2,11 @@ import './App.scss';
 import Home from '../src/pages/home/index';
 import Banner from './components/Banner/Banner';
 import Header from './components/Header/Header';
+import DetailPost from '../src/pages/detailPost/index'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 function App() {
   return (
@@ -15,9 +15,8 @@ function App() {
         <Header/>
         <Banner/>
         <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route exact path="/" component={Home} />
+          <Route path="/posts/:id" component={DetailPost} />
         </Switch>
       </div>
     </Router>
