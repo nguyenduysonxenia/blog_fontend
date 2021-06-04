@@ -1,0 +1,25 @@
+.list_icon_socical {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.social_link {
+	background-color: #fff;
+	padding: 50px 20px;
+	box-sizing: border-box;
+	>h6 {
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+}
+.wrap_icon_social {
+	width: 2rem;
+	height: 2rem;
+	border-color: rgba(0,0,0,.1);
+	background-color: rgba(0,0,0,.1);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}

@@ -20,6 +20,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "formik": "^2.2.9",
+    "jquery": "^3.6.0",
     "node-sass": "^4.14.1",
     "query-string": "^7.0.0",
     "react": "^17.0.2",
@@ -58,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.5",
     "@types/react-router-dom": "^5.1.7",
     "prettier": "^2.3.0",
     "tslint": "^6.1.3",
