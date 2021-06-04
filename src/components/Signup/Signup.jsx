@@ -23,14 +23,14 @@ const Signup = () => {
         .required()
         .oneOf([Yup.ref('password')], "Password's not match"),
     }),
-    handleSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    handleSubmit: ()=>{
+
     },
   });
   return (
     <>
       <Container className="form-container">
-        <Form className="form" onSubmit={formik.handleSubmit}>
+        <Form className="form" onSubmit={}>
           <Col xs={6} md={4}>
             <Image src={logo} roundedCircle className="image-logo" />
           </Col>

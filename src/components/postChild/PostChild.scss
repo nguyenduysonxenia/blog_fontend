@@ -1,0 +1,35 @@
+.post_item_child {
+	display: flex;
+	color: white;
+	justify-content: center;
+	align-items: center;
+	object-fit: cover;
+	width: 100%;
+	height: auto;
+	margin-top: 15px;
+	h5 {
+		font-size: 15px;
+		font-weight: 700;
+	}
+	a {
+		color: white;
+		&:hover {
+      text-decoration: none;
+			opacity: 0.75;
+		}
+	}
+}
+.post_item_child-content {
+	height: 80px;
+	box-sizing: border-box;
+	font-size: 14px;
+	margin-left: 15px;
+	border-width: 0;
+	border-style: solid;
+	font-weight: 700;
+	letter-spacing: 0px;
+	line-height: 1.25;
+	text-transform: none;
+	display: flex;
+	flex-direction: column;
+}

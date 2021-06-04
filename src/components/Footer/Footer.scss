@@ -1,0 +1,97 @@
+.footer {
+	width: 100%;
+	background-color: #383838;
+	text-align: center;
+	padding: 10px;
+	margin-top: 30px;
+}
+.title-footer {
+	color: white;
+	font-weight: 500;
+	font-size: 2rem;
+	margin-bottom: 0rem;
+	letter-spacing: 1px;
+	word-spacing: 2px;
+	margin-bottom: 0.7rem;
+}
+.content-footer {
+	font-size: 0.9rem;
+	color: #d8d8d8;
+}
+.social_links {
+	padding: 1rem;
+	background: #383838;
+	border-radius: 1rem;
+	margin-top: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	.combo {
+		transform: scale(0.9);
+		transition: 0.4s ease-in;
+		margin: 0 0.5rem;
+		height: 3em;
+		width: 3em;
+		line-height: 3em;
+	}
+}
+.combo {
+	.circle {
+		color: #f9f9f9;
+		transition: 0.4s ease-in;
+		font-size: 3em;
+	}
+	.icon {
+		color: #444343;
+		font-size: 2rem;
+		transform: translateY(1px);
+		transition: 0.2s ease-in;
+	}
+	&:hover {
+		transform: scale(1.1);
+		color: white;
+		.icon {
+			color: white;
+		}
+	}
+}
+.ig {
+	&:hover {
+		color: #e91e63;
+		.circle {
+			color: #e91e63;
+		}
+	}
+}
+.fb {
+	&:hover {
+		color: #2196f3;
+		.circle {
+			color: #2196f3;
+		}
+	}
+}
+.yt {
+	&:hover {
+		color: #f44336;
+		.circle {
+			color: #f44336;
+		}
+	}
+}
+.tw {
+	&:hover {
+		color: #2196f3;
+		.circle {
+			color: #2196f3;
+		}
+	}
+}
+.gt {
+	&:hover {
+		color: #1f1f1f;
+		.circle {
+			color: #1f1f1f;
+		}
+	}
+}

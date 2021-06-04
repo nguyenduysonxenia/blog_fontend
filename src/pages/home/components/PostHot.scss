@@ -1,0 +1,43 @@
+.card_item_post {
+	overflow: hidden;
+	background-color: #fff;
+	margin-bottom: 30px;
+	&:hover {
+		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		transition: 0.5s;
+	}
+}
+.card_item_post_image {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	overflow: hidden;
+	border: 1px solid white;
+	border-radius: 2px;
+}
+.card_item_post-content {
+	box-sizing: border-box;
+	padding: 20px;
+	>h5 {
+		font-size: 20px;
+		overflow-wrap: break-word;
+		font-weight: 700;
+		letter-spacing: 0px;
+		line-height: 1.25;
+		text-transform: none;
+		&:hover {
+			opacity: 0.5;
+			transition: 0.2s;
+		}
+		>a {
+			color: black;
+		}
+	}
+}
+.card_item_post-info {
+	font-size: 15px;
+	color: rgba(0,0,0,.38);
+}
+.card_item_post-author {
+	margin-right: 10px;
+}
