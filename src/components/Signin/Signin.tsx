@@ -3,28 +3,47 @@ import { Form, Button, Col, Image, Container } from 'react-bootstrap';
 import logo from '../../assets/images/logo.jpg';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
+import userApi from '../../api/UserAPI'
+import {useState} from 'react'
+import {useHistory} from 'react-router-dom'
+import Alert from '../Alert/Alert'
 const Signin = () => {
+  const [isShow,setIsShow] = useState(false);
+  const [error,setEroor] = useState('');
+  const history = useHistory();
   const formik = useFormik({
     initialValues: {
-      username: '',
+      email: '',
       password: '',
     },
     validationSchema: Yup.object({
-      username: Yup.string()
-        .required('Required')
-        .min(3, 'Minium 3 characters')
-        .max(15, 'Maximum 15 characters'),
+      email: Yup.string()
+        .required().email('Invalid format email')
+        .min(3, 'Minium 3 characters'),
       password: Yup.string().required('Required').min(6, 'Minium 6 characters'),
     }),
-    handleSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: (values) => {
+      setIsShow(false);
+      const signin = async ()=>{
+        try{
+            let result = await userApi.login(values)
+            if(result){
+              localStorage.setItem('accessToken',JSON.stringify(result))
+              history.push('/')
+            }
+        }
+        catch(err: any){
+          setIsShow(true);
+            setEroor(err.response.data)
+        }
+      }
+      signin();
     },
   });
   return (
     <>
       <Container className="form-container">
-        <Form className="form" >
+        <Form className="form" onSubmit={formik.handleSubmit} >
           <Col xs={6} md={4}>
             <Image src={logo} roundedCircle className="image-logo" />
           </Col>
@@ -32,14 +51,14 @@ const Signin = () => {
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
-              name="username"
-              value={formik.values.username}
+              name="email"
+              value={formik.values.email}
               onChange={formik.handleChange}
               placeholder="Enter Username"
             />
-            {formik.errors.username && formik.touched.username && (
+            {formik.errors.email && formik.touched.email && (
               <Form.Text className="text-muted text-danger">
-                {formik.errors.username}
+                {formik.errors.email}
               </Form.Text>
             )}
           </Form.Group>
@@ -66,6 +85,7 @@ const Signin = () => {
             Signin
           </Button>
         </Form>
+        {isShow ? <Alert isShow={isShow} message={error}  /> : ''}
       </Container>
     </>
   );

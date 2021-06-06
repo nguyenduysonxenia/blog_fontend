@@ -8,8 +8,7 @@ import Pagination from '../../components/Pagination/Pagination'
 import SocialLink from '../../components/SocialLink/Social'
 import ListPostNew from '../../components/ListPostNew/ListPostnew'
 import Footer from '../../components/Footer/Footer'
-
-function index(props: any) {
+function Index(props: any) {
   return (
       <React.Fragment>
         <Banner/>
@@ -60,8 +59,8 @@ function index(props: any) {
   )
 }
 
-index.propTypes = {
+Index.propTypes = {
 
 }
 
-export default index
+export default Index

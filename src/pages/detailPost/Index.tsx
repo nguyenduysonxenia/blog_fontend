@@ -6,7 +6,7 @@ import Footer from '../../components/Footer/Footer';
 import Post from './components/Post';
 import OtherPost from './components/OtherPost';
 import ListComment from './components/ListComment';
-function index(props: any) {
+function Index(props: any) {
   return (
     <div>
       <React.Fragment>
@@ -41,6 +41,6 @@ function index(props: any) {
   );
 }
 
-index.propTypes = {};
+Index.propTypes = {};
 
-export default index;
+export default Index;

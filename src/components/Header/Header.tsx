@@ -41,8 +41,8 @@ function Header(props: any) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/login" className="nav-link" href="#">
-                    Login
+                  <Link to="/signin" className="nav-link" href="#">
+                    Signin
                   </Link>
                 </li>
                 <li className="nav-item item_info_user">
