@@ -6,8 +6,7 @@ function Pagination(props: any) {
     <ul className="pagination">
       <li>
         <a href="#" className="prev">
-          {' '}
-          {'<'} Prev
+          Prev
         </a>
       </li>
       <li className="pageNumber active">
@@ -24,7 +23,7 @@ function Pagination(props: any) {
       </li>
       <li>
         <a href="#" className="next">
-          Next {'>'}
+          Next
         </a>
       </li>
     </ul>

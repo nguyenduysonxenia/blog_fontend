@@ -1,2 +1,15 @@
-class UserAPI {}
-export default UserAPI;
+import asxiosClient from './AxiosClient'
+interface User{
+  username: string,
+  email:string,
+  password:string,
+  confirmPassword:string
+}
+
+const userApi = {
+  register: (user: User) =>{
+      const url: string = '/users/signup'
+      return asxiosClient.post(url,user)
+  }
+}
+export default userApi;
