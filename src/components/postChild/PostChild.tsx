@@ -1,17 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './PostChild.scss'
+import {Link} from 'react-router-dom'
+import {IMAGE_DEFAULT} from '../../constants'
+import Moment from 'react-moment';
+import {RootState}  from '../../app/store'
+import {useSelector} from 'react-redux'
 function PostChild(props: any) {
-  return (
-    <div className="post_item_child">
-      <img src="/images/hinh3.jpg" alt="" width="80" height="80"/>
-      <div className="post_item_child-content">
-        <h5> <a href="">Few Facts About Streaming and Music Creation</a> </h5>
-        <time className="detail_post-author" >
-          April 28, 2019
-        </time>
+  const posts: any = useSelector((state: RootState)=>state.HomePage.listPostNew)
+  let results = posts.map((post: any, index: number)=>{
+    return (
+      <div key={index} className="post_item_child">
+        <img src={IMAGE_DEFAULT} alt="" width="80" height="80"/>
+        <div className="post_item_child-content">
+          <h5> <Link to={`/posts/${post._id}`}>{post.title}</Link> </h5>
+          <time className="detail_post-author" >
+            <Moment format="D MMM YYYY" withTitle>
+              {post.createdAt}
+            </Moment>
+          </time>
+        </div>
       </div>
-    </div>
+    );
+  })
+  return (
+    <>
+      {results}
+    </>
   )
 }
 

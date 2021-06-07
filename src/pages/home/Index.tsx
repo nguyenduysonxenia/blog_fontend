@@ -3,12 +3,47 @@ import PropTypes from 'prop-types'
 import PostHot from './components/PostHot';
 import Banner from '../../components/Banner/Banner';
 import Search from '../../components/Search/Search'
-import Post from './components/Post'
+import ListPost from '../../components/ListPost/ListPost'
 import Pagination from '../../components/Pagination/Pagination'
 import SocialLink from '../../components/SocialLink/Social'
 import ListPostNew from '../../components/ListPostNew/ListPostnew'
 import Footer from '../../components/Footer/Footer'
+import {useDispatch} from 'react-redux'
+import postApi from '../../api/PostAPI'
+import {useEffect} from 'react'
+import {getListPost,getlistPostNew,getListPostHot} from './HomeSlice'
 function Index(props: any) {
+  const dispatch = useDispatch()
+    const fetchPosts = async ()=>{
+      const response = await postApi.getListPosts()
+        .catch((err: any)=>{
+            console.log(err)
+        })
+        const action = getListPost(response)
+        dispatch(action)
+    }
+    const fetchPostsHot = async()=>{
+        const response = await postApi.getPostsHot()
+        .catch((err: any)=>{
+            console.log(err)
+        })
+        const action = getListPostHot(response)
+        dispatch(action)
+    }
+    const fetchPostNew = async()=>{
+      const response = await postApi.getPostsNew()
+        .catch((err: any)=>{
+            console.log(err)
+        })
+        const action = getlistPostNew(response)
+        dispatch(action)
+    }
+    useEffect(() =>{
+      fetchPosts()
+      fetchPostsHot()
+      fetchPostNew()
+    },[])
+
   return (
       <React.Fragment>
         <Banner/>
@@ -23,9 +58,6 @@ function Index(props: any) {
         </div>
         <div className="row">
             <PostHot/>
-            <PostHot/>
-            <PostHot/>
-            <PostHot/>
         </div>
         <div className="row">
           <Search/>
@@ -33,10 +65,7 @@ function Index(props: any) {
         <div className="row mt-4">
           <div className="col-lg-8 col-md-12 col-sm-12">
           <div className="row">
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
+            <ListPost/>
           </div>
           <div className="row">
             <div className="col-lg-12">

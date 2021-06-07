@@ -35,6 +35,9 @@
 		}
 	}
 }
+.card_item_post_view_number{
+	margin: 0 5px;
+}
 .card_item_post-info {
 	font-size: 15px;
 	color: rgba(0,0,0,.38);
@@ -46,6 +49,8 @@
 	padding: 0 20px;
 }
 .post-content-body_text {
+	overflow: hidden;
+	height:100px;
 	color: #666666;
 	box-sizing: border-box;
 	border-width: 0;

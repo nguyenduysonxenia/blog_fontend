@@ -1,8 +1,8 @@
+import Post from '../../pages/home/components/Post'
+
 const ListPost = () => {
     return(
-        <div className="list-post">
-            List Posts
-        </div>
+        <Post/>
     )
 }
 export default ListPost;

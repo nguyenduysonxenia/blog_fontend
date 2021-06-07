@@ -1,32 +1,43 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import './PostHot.scss'
+import {Link} from 'react-router-dom'
+import {RootState}  from '../../../app/store'
+import {useSelector} from 'react-redux'
+import Moment from 'react-moment';
 function PostHot(props:any) {
-  return (
-      <div className="col-lg-3 col-md-6 col-sm-12">
+  const posts: any = useSelector((state: RootState)=>state.HomePage.listPostHot)
+  let results = posts.map((post:any,index: number)=>{
+      return (
+        <div key={index} className="col-lg-3 col-md-6 col-sm-12">
         <div className="card_item_post">
           <img className="card_item_post_image" src="images/hinh3.jpg" alt=""/>
           <div className="card_item_post-content">
-            <h5><a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores</a> </h5>
+            <h5><Link to={`/posts/${post._id}`}>{post.title}</Link> </h5>
             <div className="card_item_post-info">
               <time className="card_item_post-author" >
-                April 28, 2019
+                <Moment format="D MMM YYYY" withTitle>
+                    {post.createdAt}
+                </Moment>
               </time>
               <span className="card_item_post-view">
                 <i className="fas fa-eye"></i>
-                <span className="card_item_post_view_number ">2.6k</span>
+                <span className="card_item_post_view_number ">{post.views}</span>
                 <span className="card_item_post_view_label">Views</span>
               </span>
             </div>
           </div>
         </div>
       </div>
+      )
+  })
+  return (
+    <>
+      {results}
+    </>
   )
 }
-
 PostHot.propTypes = {
 
 }
-
 export default PostHot
 
