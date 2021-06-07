@@ -12,7 +12,10 @@ const axiosClient  = axios.create({
   });
 
 axiosClient.interceptors.request.use(async (config) => {
-  // Handle token here ...
+  const token = localStorage.getItem('accessToken');
+  if(token){
+    config.headers.accessToken = JSON.parse(token);
+  }
   return config;
 })
 axiosClient.interceptors.response.use((response) => {
@@ -20,8 +23,15 @@ axiosClient.interceptors.response.use((response) => {
   return response.data;
   }
   return response;
-  }, (error) => {
-    throw error;
+  }, async (error) => {
+    const originalRequest = error.config;
+  if (error.response.status === 403 && !originalRequest._retry) {
+    originalRequest._retry = true;
+    // const access_token = await refreshAccessToken();
+    // axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
+    return axiosClient(originalRequest);
+  }
+  return Promise.reject(error);
 });
 
 export default axiosClient;

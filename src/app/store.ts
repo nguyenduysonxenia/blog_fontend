@@ -1,8 +1,12 @@
 
 import {configureStore} from '@reduxjs/toolkit'
-import HomSlice from '../pages/home/HomeSlice'
+import HomeSlice from '../pages/home/HomeSlice'
+import DetailPostSlice from '../pages/detailPost/DetailPpstSlice'
+import UserSlice from '../pages/user/UserSlice'
 const rootReducer = {
-  HomePage: HomSlice
+  HomePage: HomeSlice,
+  DetailPostPage: DetailPostSlice,
+  CurrentUser: UserSlice
 }
 const store = configureStore({
   reducer:rootReducer

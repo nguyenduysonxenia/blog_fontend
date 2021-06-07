@@ -1,32 +1,40 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './Post.scss'
+import {Link} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+import Moment from 'react-moment';
 function Post(props: any) {
+  const post = useSelector((state: any)=> state.DetailPostPage.Post);
   return (
+    post ?
     <div className="post_deltail">
       <div className="post_deltail-wrap">
         <img className="post_deltail-wrap-image" src="/images/hinh3.jpg"/>
       </div>
       <div className="post_deltail-content">
         <h2 className="post_deltail-content-tile">
-        How to Stop Feeling Jealous of Other People’s Success
+          {post.title}
         </h2>
         <div className="post_deltail-content-author">
             <span className="post_deltail-content-author-name">
-              By <a href="#">Duy Son</a>
+              By <Link to='#'>{post.author.username}</Link>
             </span>
             <span className="post_deltail-content-author-date">
-              May 21, 2019
+              <Moment format="D MMM YYYY" withTitle>
+                    {post.createdAt}
+              </Moment>
             </span>
             <span className="post_deltail-content-author-minute">
-              4 mins read
+            <Moment toNow>{post.createdAt}</Moment>
             </span>
         </div>
         <div className="post_deltail-content-text">
-          woody equal ask saw sir weeks aware decay. Entrance prospect removing we packages strictly is no smallest he. For hopes may chief get day rooms. Oh no turned behind polite piqued enough at. Forbade few through inquiry blushes you. Cousin no itself eldest it in dinner latter missed.
+          {post.content}
         </div>
       </div>
     </div>
+    : null
   )
 }
 

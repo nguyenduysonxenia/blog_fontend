@@ -7,7 +7,10 @@ import userApi from '../../api/UserAPI'
 import {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import Alert from '../Alert/Alert'
+import {useDispatch} from 'react-redux'
+import {setCurrentUser} from '../../pages/user/UserSlice'
 const Signin = () => {
+  const dispatch = useDispatch();
   const [isShow,setIsShow] = useState(false);
   const [error,setEroor] = useState('');
   const history = useHistory();
@@ -29,7 +32,11 @@ const Signin = () => {
             let result = await userApi.login(values)
             if(result){
               localStorage.setItem('accessToken',JSON.stringify(result))
-              history.push('/')
+              let response = await userApi.getCurrentUser()
+              .catch((error: any)=> console.log(error))
+              const action  = setCurrentUser(response);
+              dispatch(action);
+              history.goBack()
             }
         }
         catch(err: any){
