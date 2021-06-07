@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom'
 import './Header.scss';
 function Header(props: any) {
   return (
@@ -25,24 +26,24 @@ function Header(props: any) {
               <ul className="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll"></ul>
               <ul className="list-nav-item">
                 <li className="nav-item ">
-                  <a className="nav-link" href="#">
+                  <Link to="/" className="nav-link" >
                     Home <span className="sr-only">(current)</span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link to="/about" className="nav-link" >
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Contact
-                  </a>
+                  <Link to="/Posts" className="nav-link" href="#">
+                    Post
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link to="/login" className="nav-link" href="#">
                     Login
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

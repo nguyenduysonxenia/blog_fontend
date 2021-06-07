@@ -1,0 +1,27 @@
+#form_post_Comment{
+  position: relative;
+  padding:10px 0;
+}
+.input_post_Comment{
+  width: 100%;
+  outline: none;
+  border:none;
+  border-bottom: 1px solid black;
+  color:black;
+  background-color:#f5f5f5;
+  box-sizing: border-box;
+  padding: 10px 20px;
+}
+.btn_submit_comment{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform:translateY(-50%);
+  box-sizing: border-box;
+  outline: none;
+  border:none;
+  background: transparent;
+  &>i{
+    font-size: 25px;
+  }
+}
