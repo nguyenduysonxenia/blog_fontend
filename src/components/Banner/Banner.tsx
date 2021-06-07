@@ -6,7 +6,7 @@ const Banner = () => {
     <div className="banner">
       <div
         id="carouselExampleFade"
-        className="carousel slide carousel-fade"
+        className="carousel slide carousel-fade carousel_wrap"
         data-ride="carousel"
       >
         <div className="carousel-inner">
@@ -63,7 +63,7 @@ const Banner = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-5 col-md-6 col-sm-12">
+            <div className="col-lg-5 col-md-6  display-none">
               <div className="baner_content-listpost">
                 <h4>What's Hot</h4>
                 <PostChild />

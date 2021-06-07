@@ -1,16 +1,22 @@
 import './Signup.scss';
+import {useState} from 'react'
 import { Form, Button, Col, Image, Container } from 'react-bootstrap';
 import logo from '../../assets/images/logo.jpg';
-import { useFormik } from 'formik';
+import { useFormik,Formik } from 'formik';
 import * as Yup from 'yup';
+import userApi from '../../api/UserAPI'
+import Alert from '../Alert/Alert'
+import  { Redirect,withRouter } from 'react-router-dom'
 
-const Signup = () => {
+const Signup = (props: any) => {
+  const [isShow,setIsShow] = useState(false);
+  const [error,setEroor] = useState('');
   const formik = useFormik({
     initialValues: {
       email: '',
       username: '',
       password: '',
-      passwordConfirm: '',
+      confirmPassword: '',
     },
     validationSchema: Yup.object({
       email: Yup.string().required().email('Invalid format email'),
@@ -19,18 +25,30 @@ const Signup = () => {
         .min(3, 'Minium 3 characters')
         .max(15, 'Maximum 15 characters'),
       password: Yup.string().required('Required').min(6, 'Minium 6 characters'),
-      passwordConfirm: Yup.string()
+      confirmPassword: Yup.string()
         .required()
         .oneOf([Yup.ref('password')], "Password's not match"),
     }),
-    handleSubmit: ()=>{
-
+    onSubmit: (values)=>{
+      setIsShow(false);
+      const createUser = async ()=>{
+        try{
+          const data = await userApi.register(values);
+          if(data){
+            props.history.push("/signin")
+          }
+        }
+        catch(err: any){
+          setIsShow(true);
+          setEroor(err.response.data)
+        }
+      }
+      createUser();
     },
   });
   return (
-    <>
       <Container className="form-container">
-        <Form className="form" onSubmit={}>
+        <Form className="form" onSubmit={formik.handleSubmit}>
           <Col xs={6} md={4}>
             <Image src={logo} roundedCircle className="image-logo" />
           </Col>
@@ -61,7 +79,7 @@ const Signup = () => {
             />
 
             {formik.errors.username && formik.touched.username && (
-              <Form.Text className="text-muted" variant="success">
+              <Form.Text className="text-muted">
                 {formik.errors.username}
               </Form.Text>
             )}
@@ -85,16 +103,15 @@ const Signup = () => {
             <Form.Label className="label">Password Confirmation</Form.Label>
             <Form.Control
               type="password"
-              name="passwordConfirm"
-              value={formik.values.passwordConfirm}
+              name="confirmPassword"
+              value={formik.values.confirmPassword}
               onChange={formik.handleChange}
               placeholder="Password Confirmation"
             />
-
-            {formik.errors.passwordConfirm &&
-              formik.touched.passwordConfirm && (
+            {formik.errors.confirmPassword &&
+              formik.touched.confirmPassword && (
                 <Form.Text className="text-muted">
-                  {formik.errors.passwordConfirm}
+                  {formik.errors.confirmPassword}
                 </Form.Text>
               )}
           </Form.Group>
@@ -103,9 +120,9 @@ const Signup = () => {
             Signup
           </Button>
         </Form>
+        {isShow ? <Alert isShow={isShow} message={error}  /> : ''}
       </Container>
-    </>
   );
 };
 
-export default Signup;
+export default withRouter(Signup);

@@ -6,6 +6,9 @@
 	font-weight: 700;
 	letter-spacing: 0px;
 }
+.active_menu{
+	color:#4299e1;
+}
 .navbar_header {
 	width: 100%;
 }
@@ -44,13 +47,124 @@
 @media screen and (max-width: 739px) {
   .list-nav-item{
       flex-direction: column;
-}
+			.item_info_user{
+				position: fixed;
+				right:20px;
+				top:0px;
+			}
+	}
+	.item_info_user{
+		transform:translateY(0px)
+	}
+	.logo_menu{
+		display:none;
+	}
 }
 
 /* Tablet - PC low resolution */
 @media (min-width: 740px) and (max-width: 1023px) {
 
-.list-nav-item{
-    flex-direction: column;
+	.list-nav-item{
+		flex-direction: column;
+		.item_info_user{
+			position: fixed;
+			right:20px;
+			top:0px;
+		}
+	}
+	.item_info_user{
+		transform:translateY(0px)
+	}
+	.logo_menu{
+		display:none;
+	}
 }
+.item_info_user{
+	position: relative;
+	display: flex;
+  z-index: 10;
+	transform:translateY(-5%);
+}
+.img_info_user{
+	width:40px;
+	height:40px;
+	border-radius: 50%;
+	box-sizing: border-box;
+	padding: -5px 0;
+	margin-right: 10px;
+}
+.item_info_user:hover .User-Dropdown{
+	display:block;
+}
+.User-Dropdown {
+  &:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin-left: -0.5em;
+    left: 50%;
+    box-sizing: border-box;
+    border: 7px solid black;
+    border-color: transparent transparent #ffffff #ffffff;
+    transform-origin: 0 0;
+    transform: rotate(135deg);
+    box-shadow: -3px 3px 3px -3px rgba(214, 214, 214, 0.78);
+  }
+  display: none;
+  position: absolute;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0px 0px 8px rgba(214, 214, 214, 0.78);
+  list-style: none;
+  padding: 0 20px;
+  width: 180px;
+  margin: 0;
+  top: 70px;
+  right: -9%;
+  &.U-open {
+    display: block;
+  }
+  > li {
+    padding: 0px;
+    line-height: 47px;
+    border-bottom: 1px solid rgba(215, 215, 215, 0.17);
+    &:last-child {
+      border-bottom: 0px;
+    }
+    > a {
+      font-size: 13px;
+      padding: 15px 25px 16px 10px;
+      text-decoration: none;
+      color: #1787e0;
+      transition: all .2s ease-out;
+    }
+  }
+  span {
+    background: #16d67a;
+    padding: 3px 10px;
+    color: #fff;
+    border-radius: 30px;
+    font-size: 13px;
+  }
+  > li {
+    &:before {
+      content: '';
+      width: 0px;
+      height: 40px;
+      position: absolute;
+      background: #2196F3;
+      margin-top: 4px;
+      border-radius: 0 1px 1px 0;
+      left: 0px;
+      transition: all .2s ease;
+    }
+    &:hover:before {
+      width: 5px;
+      border-radius:30px;
+    }
+    a:hover {
+      margin-left: 5px;
+    }
+  }
 }

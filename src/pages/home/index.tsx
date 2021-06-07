@@ -1,15 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import PostHot from './components/PostHot';
+import Banner from '../../components/Banner/Banner';
 import Search from '../../components/Search/Search'
 import Post from './components/Post'
 import Pagination from '../../components/Pagination/Pagination'
 import SocialLink from '../../components/SocialLink/Social'
 import ListPostNew from '../../components/ListPostNew/ListPostnew'
 import Footer from '../../components/Footer/Footer'
-const index = (props: any) => {
+
+function index(props: any) {
   return (
       <React.Fragment>
+        <Banner/>
         <div className="container">
         <div className="row">
             <div className="col-lg-12">

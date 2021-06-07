@@ -19,6 +19,18 @@
 	display: flex;
 	align-items: flex-end;
 }
+.detail_post-author{
+	margin-left: 10px;
+	>span{
+		margin-right: 5px;
+	}
+}
+.detail_post-view{
+	margin-left: 19px;
+	>span{
+		margin-left: 5px;
+	}
+}
 .baner_content-title-info {
 	margin-bottom: 50px;
 	>h6 {
@@ -67,5 +79,22 @@
 		color: white;
 		margin-bottom: 15px;
 		overflow-wrap: break-word;
+	}
+}
+@media screen and (max-width:850px){
+	.display-none{
+		display:none
+	}
+	.banner_content{
+		width:100%;
+	}
+	.banner{
+		height:400px;
+	}
+	.baner_content-title-info>h2{
+
+	}
+	.carousel-inner,.carousel_wrap{
+		height:100%;
 	}
 }
