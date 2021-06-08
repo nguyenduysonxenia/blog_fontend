@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SocialLink from '../../components/SocialLink/Social';
@@ -28,7 +28,7 @@ function Index(props: any) {
   const dispatch = useDispatch();
   const history = props.history;
   const params: Params = useParams();
-  const fetchPost = async () => {
+  const fetchPost = useCallback(async () => {
     const response: any = await postApi.getPost(params.postId).catch((err) => {
       history.push('/notfound');
     });
@@ -46,17 +46,20 @@ function Index(props: any) {
       var isExist = -1;
       if (currentUser.id) {
         isExist = response.likes.findIndex(
-          (u: any) => u.toString() == currentUser.id.toString(),
+          (u: any) => u.toString() === currentUser.id.toString(),
         );
       }
       let isLike = isExist == -1 ? false : true;
       const actionLike = toggleLike(isLike);
       dispatch(actionLike);
     }
-  };
+  },[]);
   const fetchViews = async () => {
-    const response: any = await postApi.view(params.postId);
-    console.log(response);
+    try{
+      const response: any = await postApi.view(params.postId)
+    }catch(err: any){
+      console.log(err)
+    }
   };
   useEffect(() => {
     fetchPost();
@@ -76,11 +79,11 @@ function Index(props: any) {
                   <OtherPost />
                 </div>
               </div>
-              {showComment ? (
+              {showComment && (
                 <div className="row">
                   <ListComment />
                 </div>
-              ) : null}
+              )}
             </div>
             <div className="col-lg-4">
               <div className="row">
@@ -101,3 +104,4 @@ function Index(props: any) {
 Index.propTypes = {};
 
 export default Index;
+

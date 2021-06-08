@@ -33,7 +33,6 @@ const Signin = () => {
             if(result){
               localStorage.setItem('accessToken',JSON.stringify(result))
               let response = await userApi.getCurrentUser()
-              .catch((error: any)=> console.log(error))
               const action  = setCurrentUser(response);
               dispatch(action);
               history.goBack()

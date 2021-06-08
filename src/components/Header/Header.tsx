@@ -1,29 +1,30 @@
-import React,{useEffect} from 'react';
+import React,{useCallback, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 import './Header.scss';
 import apiUser from '../../api/UserAPI'
 import {setCurrentUser,logout} from '../../pages/user/UserSlice'
 import {useDispatch,useSelector} from 'react-redux'
-import {io} from 'socket.io-client'
-const SOCKET_URL_SERVER: any = process.env.SOCKET_URL_SERVER
-const socket = io(SOCKET_URL_SERVER,
-  {transports: ['websocket', 'polling', 'flashsocket']}
-)
+import {listenNotifycation} from '../../Socket'
+import {SocketContext} from '../../Socket'
+
 function Header(props: any) {
+  const socket = React.useContext(SocketContext);
   const dispatch = useDispatch();
   const currentUser = useSelector((state: any)=> state.CurrentUser);
-  const getCurrentUser = async () =>{
+
+  const getCurrentUser = useCallback(async () =>{
     const token = localStorage.getItem('accessToken');
     if(token){
       let response = await apiUser.getCurrentUser()
       .catch((error: any)=>{
         console.log(error);
       })
-      const action  = setCurrentUser(response);
-      dispatch(action);
+      dispatch(setCurrentUser(response));
+      const windows:any = window;
+      windows.currentUser = response
     }
-  }
+  },[])
   const handleLogout = ()=>{
     const action = logout({
       username: null,
@@ -31,12 +32,13 @@ function Header(props: any) {
       id: null,
       admin: null
     })
-    localStorage.removeItem("accessToken");
     dispatch(action);
   }
   useEffect(()=>{
     getCurrentUser()
+    listenNotifycation(socket)
   },[])
+
   return (
     <div className="header">
       <div className="container">
@@ -74,19 +76,7 @@ function Header(props: any) {
                     Post
                   </Link>
                 </li>
-                {
-                currentUser.username ?
-                null
-                :
-                (
-                <li className="nav-item">
-                    <Link to="/signin" className="nav-link" href="#">
-                      Signin/Signup
-                    </Link>
-                </li>
-                )
 
-                }
                 {
                   currentUser.username ?
                   (
@@ -104,9 +94,14 @@ function Header(props: any) {
                     </li>
                   )
                   :
-                  null
+                  (
+                    <li className="nav-item">
+                        <Link to="/signin" className="nav-link" href="#">
+                          Signin/Signup
+                        </Link>
+                    </li>
+                  )
                 }
-
               </ul>
             </div>
           </nav>

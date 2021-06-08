@@ -37,8 +37,7 @@ const Home = createSlice({
     postSubComment: (state,action)=>{
        let comments: Array<any> = state.comments;
        let index:number = comments.findIndex((u:any)=> u._id.toString() == action.payload.parentComment.toString())
-       console.log(index)
-       comments[index].subComments= [...(comments[index].subComments)].concat(action.payload)
+       comments[index].subComments = [...(comments[index].subComments)].concat(action.payload)
     },
   }
 })

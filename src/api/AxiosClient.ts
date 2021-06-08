@@ -2,7 +2,13 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 const REACT_APP_API: any = process.env.REACT_APP_API_URL
-
+const getToken = (config: any)=>{
+  const token = localStorage.getItem('accessToken');
+  if(token){
+    config.headers.accessToken = JSON.parse(token);
+  }
+  return config;
+}
 const axiosClient  = axios.create({
   baseURL: REACT_APP_API,
   headers: {
@@ -12,11 +18,7 @@ const axiosClient  = axios.create({
   });
 
 axiosClient.interceptors.request.use(async (config) => {
-  const token = localStorage.getItem('accessToken');
-  if(token){
-    config.headers.accessToken = JSON.parse(token);
-  }
-  return config;
+  return getToken(config);
 })
 axiosClient.interceptors.response.use((response) => {
   if (response && response.data) {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import './FormPostComment.scss';
 import { useFormik } from 'formik';
@@ -7,21 +7,23 @@ import {postComment,postSubComment} from '../DetailPpstSlice'
 import postApi from '../../../api/PostAPI'
 import { useHistory } from 'react-router-dom';
 import {io} from 'socket.io-client'
-const SOCKET_URL_SERVER: any = process.env.SOCKET_URL_SERVER
-const socket = io(SOCKET_URL_SERVER,
-  {transports: ['websocket', 'polling', 'flashsocket']}
-)
+import {emitNotifycation} from '../../../Socket'
+import {SocketContext} from '../../../Socket'
 function FormPostComment(props: any) {
+  const socket = React.useContext(SocketContext);
   const history = useHistory();
   const currentUser = useSelector((state: any)=> state.CurrentUser);
   const distPatch = useDispatch();
   const {postId,parentComment} = props;
-  console.log(postId,parentComment);
+  const clientSend = useCallback((data: any)=>{
+    emitNotifycation(socket,data)
+  },[])
   const addComment = async (data: any)=>{
     const response: any = await postApi.postComment(postId,data)
     .catch((error)=>{
       console.log(error);
     })
+    console.log(response)
     let body = {...response,authorInfo:{
       name: currentUser.username,
       avatar: currentUser.avatar
@@ -32,10 +34,9 @@ function FormPostComment(props: any) {
     }
     else{
       const action = postComment(body)
-    distPatch(action)
+      distPatch(action)
     }
-    socket.emit('send-comment',body)
-
+    clientSend({postId,authorComment: response.author});
   }
   const formik = useFormik({
     initialValues: {

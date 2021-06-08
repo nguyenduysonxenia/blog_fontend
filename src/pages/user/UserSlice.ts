@@ -13,6 +13,7 @@ const User = createSlice({
       return state
     },
     logout: (state,action)=>{
+      localStorage.removeItem("accessToken");
       state = action.payload
       return state
     }
