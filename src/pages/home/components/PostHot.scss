@@ -19,6 +19,8 @@
 	box-sizing: border-box;
 	padding: 20px;
 	>h5 {
+		height: 100px;
+		overflow: hidden;
 		font-size: 20px;
 		overflow-wrap: break-word;
 		font-weight: 700;

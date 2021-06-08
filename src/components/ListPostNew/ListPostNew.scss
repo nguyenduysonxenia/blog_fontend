@@ -7,7 +7,13 @@
 	}
 }
 .recent_post_title {
+	font-size: 13px!important;
+	height:70px;
+	overflow: hidden;
 	>a {
+		height:100%;
+
+		display: block;
 		color: black!important;
 	}
 }

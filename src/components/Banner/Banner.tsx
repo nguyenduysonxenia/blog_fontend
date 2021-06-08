@@ -67,9 +67,6 @@ const Banner = () => {
               <div className="baner_content-listpost">
                 <h4>What's Hot</h4>
                 <PostChild />
-                <PostChild />
-                <PostChild />
-                <PostChild />
               </div>
             </div>
           </div>

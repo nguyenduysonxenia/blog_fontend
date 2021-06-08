@@ -1,12 +1,50 @@
 .search_post {
 	text-align: center;
-	>input {
-		outline: none;
-		padding: 5px 10px;
-		border: 0;
-		background-color: transparent;
-		border-bottom: 1px solid black;
+	.wrap_search{
+		position: relative;
+		display:inline-block;
+		>input {
+			outline: none;
+			padding: 5px 10px;
+			border: 0;
+			background-color: transparent;
+			border-bottom: 1px solid black;
+			&:focus ~.wrap_list_search{
+				display:block;
+			}
+		}
+		.wrap_list_search{
+			border-radius: 5px;
+			width: 100%;
+			background:#fff;
+			display:none;
+			position: absolute;
+			top:110%;
+			z-index: 10;
+			padding: 10px 20px;
+			&:hover{
+				display:block;
+			}
+			>li{
+				overflow: hidden;
+				list-style: none;
+				padding: 10px 20px;
+				border-bottom: 1px solid #ced1d5;
+				text-overflow: ellipsis;
+				>a{
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					color:black;
+					&:hover{
+						opacity: .75;
+						transition:0.2s;
+					}
+				}
+			}
+		}
 	}
+
 	>button {
 		font-size: 1em;
 		background: #3498db;
@@ -24,4 +62,7 @@
 			color: #3498db;
 		}
 	}
+}
+.list_post_suggestions{
+
 }

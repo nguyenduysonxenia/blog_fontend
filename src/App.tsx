@@ -1,8 +1,9 @@
 import './App.scss';
-import Home from '../src/pages/home/index';
+import Home from './pages/home/Index';
 import Header from './components/Header/Header';
-import DetailPost from '../src/pages/detailPost/index'
+import DetailPost from './pages/detailPost/Index'
 import Signup from './components/Signup/Signup'
+import Signin from './components/Signin/Signin'
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/posts/:id" component={DetailPost} />
           <Route path="/signup" component={Signup} />
+          <Route path="/signin" component={Signin} />
         </Switch>
       </div>
     </Router>
