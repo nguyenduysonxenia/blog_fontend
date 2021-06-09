@@ -2,33 +2,50 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Comment.scss';
 import SubComment from './SubComment'
+import Moment from 'react-moment';
 import FormPostComment from './FormPostComment'
+import { useSelector } from 'react-redux';
 function Comment(props: any) {
-  return (
-    <div className="media mt-4">
-      {' '}
-      <img
-        className="mr-3 rounded-circle"
-        src="https://i.imgur.com/stD0Q19.jpg"
-      />
-      <div className="media-body">
-        <div className="row">
-          <div className="col-8 d-flex">
-            <h5 className="comment_author_name">Duy Sơn</h5> <span className="comment_time">2-2-2020</span>
+  const comments = useSelector((state: any)=> state.DetailPostPage.comments)
+  const post: any = useSelector((state: any)=> state.DetailPostPage.Post)
+  let results = comments.map((comment: any,index: number)=>{
+    return (
+        <div key={index} className="media mt-4">
+          {' '}
+          <img
+            className="mr-3 rounded-circle"
+            src="https://i.imgur.com/stD0Q19.jpg"
+          />
+          <div className="media-body">
+            <div className="row">
+              <div className="col-8 d-flex">
+                <h5 className="comment_author_name">{comment.authorInfo.name}</h5>
+                <span className="comment_time">
+                  <Moment format="D MMM YYYY" withTitle>
+                    {comment.createdAt}
+                  </Moment>
+              </span>
+              </div>
+            </div>
+            <span className="content_comment">
+              {comment.content}
+            </span>
+            <FormPostComment postId={post._id} parentComment={comment._id}/>
+            <SubComment comment={comment.subComments}/>
           </div>
         </div>
-        <span className="content_comment">
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page
-        </span>
-        <FormPostComment/>
-        <SubComment/>
-        <SubComment/>
-      </div>
-    </div>
+    )
+  })
+  return (
+    <>
+      {results}
+    </>
+
   );
 }
 
-Comment.propTypes = {};
+Comment.propTypes = {
+  handleComment: PropTypes.func
+};
 
 export default Comment;

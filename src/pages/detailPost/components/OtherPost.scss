@@ -6,6 +6,7 @@
   margin-bottom: 20px;
   background-color: #fff;
   &-comment{
+    cursor: pointer;
     margin-right: 20px;
     font-size:15px;
     color:black;
@@ -21,4 +22,16 @@
       padding: 0 5px;
     }
   }
+  &-like{
+    cursor: pointer;
+    margin-right: 20px;
+    font-size:15px;
+    color:black;
+    >span{
+      padding: 0 5px;
+    }
+  }
+}
+.active_like{
+  color:#1967d2;
 }

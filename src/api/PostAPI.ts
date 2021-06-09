@@ -5,8 +5,6 @@ interface Post{
   image:string,
 }
 
-
-
 const postApi = {
   getListPosts: () =>{
       const url: string = '/posts'
@@ -23,6 +21,26 @@ const postApi = {
   getListSearch: (queryString: string)=>{
     const url:string = `/posts/search?key=${queryString}`
     return asxiosClient.get(url)
+  },
+  getPost: (params: string)=>{
+    const url:string = `/posts/${params}`
+    return asxiosClient.get(url)
+  },
+  getComments: (params: string)=>{
+    const url:string = `/comments/${params}/post`
+    return asxiosClient.get(url)
+  },
+  postComment: (params:string,body: any)=>{
+    const url:string = `/comments/${params}/post`
+    return asxiosClient.post(url,body)
+  },
+  like: (params: string)=>{
+    const url:string = `/posts/${params}/like`
+    return asxiosClient.patch(url)
+  },
+  view: (params:string)=>{
+    const url:string = `/posts/${params}/view`
+    return asxiosClient.patch(url)
   }
 }
 export default postApi;

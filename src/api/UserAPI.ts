@@ -14,6 +14,10 @@ const userApi = {
   login: (user: User)=>{
     const url: string = '/users/signin'
     return asxiosClient.post(url,user)
+  },
+  getCurrentUser: ()=>{
+    const url: string = '/users/getcurrentuser'
+    return asxiosClient.get(url)
   }
 }
 export default userApi;

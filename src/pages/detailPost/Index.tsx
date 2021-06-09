@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect,useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SocialLink from '../../components/SocialLink/Social';
 import ListPostNew from '../../components/ListPostNew/ListPostnew';
@@ -6,7 +7,64 @@ import Footer from '../../components/Footer/Footer';
 import Post from './components/Post';
 import OtherPost from './components/OtherPost';
 import ListComment from './components/ListComment';
+import { useDispatch, useSelector } from 'react-redux';
+import postApi from '../../api/PostAPI';
+import {
+  getPost,
+  getComments,
+  toggleLike,
+  setCountView,
+  setCountLike,
+} from './DetailPpstSlice';
+
+interface Params {
+  postId: string;
+}
 function Index(props: any) {
+  const showComment = useSelector(
+    (state: any) => state.DetailPostPage.showComment,
+  );
+  const currentUser = useSelector((state: any) => state.CurrentUser);
+  const dispatch = useDispatch();
+  const history = props.history;
+  const params: Params = useParams();
+  const fetchPost = useCallback(async () => {
+    const response: any = await postApi.getPost(params.postId).catch((err) => {
+      history.push('/notfound');
+    });
+    if (response) {
+      const comments = await postApi.getComments(response._id);
+      const actionPost = getPost(response);
+      const actionComment = getComments(comments);
+      const actionView = setCountView(response.views);
+      const actioncountLike = setCountLike(response.likes.length);
+      dispatch(actionPost);
+      dispatch(actionComment);
+      dispatch(actionView);
+      dispatch(actioncountLike);
+      console.log(currentUser);
+      var isExist = -1;
+      if (currentUser.id) {
+        isExist = response.likes.findIndex(
+          (u: any) => u.toString() === currentUser.id.toString(),
+        );
+      }
+      let isLike = isExist == -1 ? false : true;
+      const actionLike = toggleLike(isLike);
+      dispatch(actionLike);
+    }
+  },[]);
+  const fetchViews = async () => {
+    try{
+      const response: any = await postApi.view(params.postId)
+    }catch(err: any){
+      console.log(err)
+    }
+  };
+  useEffect(() => {
+    fetchPost();
+    fetchViews();
+  }, []);
   return (
     <div>
       <React.Fragment>
@@ -18,12 +76,14 @@ function Index(props: any) {
                   <Post />
                 </div>
                 <div className="col-lg-12">
-                  <OtherPost/>
+                  <OtherPost />
                 </div>
               </div>
-              <div className="row">
-                <ListComment/>
-              </div>
+              {showComment && (
+                <div className="row">
+                  <ListComment />
+                </div>
+              )}
             </div>
             <div className="col-lg-4">
               <div className="row">
@@ -44,3 +104,4 @@ function Index(props: any) {
 Index.propTypes = {};
 
 export default Index;
+
