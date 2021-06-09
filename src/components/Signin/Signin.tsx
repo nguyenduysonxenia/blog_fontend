@@ -35,7 +35,7 @@ const Signin = () => {
               let response = await userApi.getCurrentUser()
               const action  = setCurrentUser(response);
               dispatch(action);
-              history.goBack()
+              history.goBack();
             }
         }
         catch(err: any){

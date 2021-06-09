@@ -72,7 +72,7 @@ function Header(props: any) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/Posts" className="nav-link" href="#">
+                  <Link to="/Posts/new" className="nav-link" href="#">
                     Post
                   </Link>
                 </li>

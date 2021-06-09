@@ -4,7 +4,10 @@ import Header from './components/Header/Header';
 import DetailPost from './pages/detailPost/Index'
 import Signup from './components/Signup/Signup'
 import Signin from './components/Signin/Signin'
+import AddPost from './pages/addPost/Index'
 import {SocketContext, socket } from "./Socket";
+import PrivateRoute from './PrivateRouter'
+import {useSelector} from 'react-redux'
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,9 +22,12 @@ function App() {
         <Header/>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/posts/:postId" component={DetailPost} />
+          <Route path="/posts/new" exact component={AddPost} />
+          {/* <PrivateRoute path="/posts/new" exact component={AddPost}   /> */}
+          <Route path="/posts/:postId" exact component={DetailPost} />
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
+
         </Switch>
       </div>
      </SocketContext.Provider>

@@ -41,6 +41,10 @@ const postApi = {
   view: (params:string)=>{
     const url:string = `/posts/${params}/view`
     return asxiosClient.patch(url)
+  },
+  createPost: (body: any)=>{
+    const url:string = `/posts`
+    return asxiosClient.post(url, body)
   }
 }
 export default postApi;

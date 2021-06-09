@@ -6,7 +6,7 @@ import UserSlice from '../pages/user/UserSlice'
 const rootReducer = {
   HomePage: HomeSlice,
   DetailPostPage: DetailPostSlice,
-  CurrentUser: UserSlice
+  CurrentUser: UserSlice,
 }
 const store = configureStore({
   reducer:rootReducer

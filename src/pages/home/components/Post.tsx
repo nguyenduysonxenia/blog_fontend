@@ -5,6 +5,7 @@ import {RootState}  from '../../../app/store'
 import {Link} from 'react-router-dom'
 import Moment from 'react-moment';
 import {useSelector} from 'react-redux'
+import parse from 'html-react-parser';
 
 interface Post{
   _id: string
@@ -40,7 +41,7 @@ function Post(props: any) {
             </div>
           </div>
           <div className="card_item_post-content-body">
-            <p className="post-content-body_text">{post.content}</p>
+            <p className="post-content-body_text">{parse(post.content)}</p>
             <p className="post-content-body_btn"><Link to={`/posts/${post._id}`}>Read more</Link> <i className="fas fa-long-arrow-alt-right"></i></p>
           </div>
         </div>
