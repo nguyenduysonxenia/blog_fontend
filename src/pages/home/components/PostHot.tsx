@@ -10,7 +10,7 @@ function PostHot(props:any) {
       return (
         <div key={index} className="col-lg-3 col-md-6 col-sm-12">
         <div className="card_item_post">
-          <img className="card_item_post_image" src="images/hinh3.jpg" alt=""/>
+          <img className="card_item_post_image" src={ post.image ?   post.image.url_image :  '/images/hinh3.jpg' } alt=""/>
           <div className="card_item_post-content">
             <h5><Link to={`/posts/${post._id}`}>{post.title}</Link> </h5>
             <div className="card_item_post-info">

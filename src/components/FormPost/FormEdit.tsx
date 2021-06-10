@@ -1,19 +1,20 @@
-import React,{useState} from 'react'
+import React,{useCallback, useState} from 'react'
 import PropTypes from 'prop-types'
 import { useFormik } from 'formik';
 import  ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useSelector } from 'react-redux';
 
-function FormPost(props: any) {
-  const [content,setContent] = useState('');
+function FormEdit(props: any) {
+  const post  = useSelector((state: any)=>state.EditPostPage.Post)
+  const [content,setContent] = useState(post.content);
   const [image,setImage] = useState(null);
   const formik = useFormik({
     initialValues: {
-      title: ''
+      title: post.title,
     },
     onSubmit: (values,{resetForm}) => {
-       props.handleSubmit({...values,content,image})
+       props.handleSubmit({...values,content,image, postId: post._id})
        resetForm()
        setContent('');
        setImage(null);
@@ -31,7 +32,7 @@ function FormPost(props: any) {
       <div className="row">
         <div className="col-lg-4 col-md-4 col-sm-12 ">
           <div className="wrap_email_post">
-          <img className="img-rounded img_preview_post" width={'200'} height={'250'} src= {image ? URL.createObjectURL(image) : '/images/upload-cloud.png' }
+          <img className="img-rounded img_preview_post" width={'200'} height={'250'} src= {image ? URL.createObjectURL(image) : post.image ? post.image.url_image : '/images/upload-cloud.png' }
            onChange={formik.handleChange}/>
           </div>
         </div>
@@ -63,18 +64,17 @@ function FormPost(props: any) {
         <button className="btn-submit-send_post" type="submit">Save</button>
       </div>
     </form>
-
     )
 
 }
 
-FormPost.propTypes = {
+FormEdit.propTypes = {
   handleSubmit : PropTypes.func,
   data: PropTypes.object
 }
-FormPost.defaultProps={
+FormEdit.defaultProps={
   data: null
 }
 
-export default FormPost
+export default FormEdit
 

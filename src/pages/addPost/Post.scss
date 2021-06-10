@@ -1,6 +1,24 @@
+.title_add_post_wrap{
+  text-align:center;
+  margin: 50px 0;
+}
 .title_add_post{
+  text-align: center;
+  font-family: system-ui;
+  display: inline-block;
+  text-transform: uppercase;
+  &::after,::before{
+    content: " ";
+    display: block;
+    border-bottom: 1px solid #c50000;
+    border-top: 1px solid #c50000;
+    height: 5px;
+  background-color:#f8f8f8;
+  }
+}
+.title_edit_post{
   font-weight: 700;
-  margin: 100px 0;
+  margin: 60px 0;
   text-align: center;
 }
 #form-container {

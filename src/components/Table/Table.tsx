@@ -38,7 +38,7 @@ function Table(props: any) {
               <td>{post.comments.length}</td>
               <td>{post.actived ? 'activated': 'not activated'}</td>
               <td>{new Intl.DateTimeFormat('en-US').format(new Date(post.createdAt))}</td>
-              <td><Link to={`/post/${post._id}/edit`} className="btn btn-warning"><i className="far fa-edit"></i></Link></td>
+              <td><Link to={`/posts/${post._id}/edit`} className="btn btn-warning"><i className="far fa-edit"></i></Link></td>
               <td><ButtonRemove idPost={post._id} /></td>
             </tr>
     )

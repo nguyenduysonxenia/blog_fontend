@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import PropTypes from 'prop-types'
 import PostHot from './components/PostHot';
 import Banner from '../../components/Banner/Banner';
@@ -12,7 +12,9 @@ import {useDispatch} from 'react-redux'
 import postApi from '../../api/PostAPI'
 import {useEffect} from 'react'
 import {getListPost,getlistPostNew,getListPostHot} from './HomeSlice'
+import LoadingBG from '../../components/Loading/LoadingBG'
 function Index(props: any) {
+  const [loading,setLoading] = useState(true)
   const dispatch = useDispatch()
     const fetchPosts = async ()=>{
       const response = await postApi.getListPosts()
@@ -37,15 +39,18 @@ function Index(props: any) {
         })
         const action = getlistPostNew(response)
         dispatch(action)
+        setLoading(false)
     }
     useEffect(() =>{
       fetchPosts()
       fetchPostsHot()
       fetchPostNew()
+
     },[])
 
   return (
       <React.Fragment>
+        {loading ? <LoadingBG/> : ''}
         <Banner/>
         <div className="container">
         <div className="row">

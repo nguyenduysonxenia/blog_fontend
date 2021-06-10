@@ -11,12 +11,15 @@ interface Post{
   _id: string
   title: string,
   content: string,
-  image: string,
+  image: any,
   createdAt: Date
   views:[]
 }
 
 function Post(props: any) {
+  function createMarkup(data: string) {
+    return {__html: data};
+  }
   const state: any = useSelector((state: RootState)=>state.HomePage.listPost)
   let posts = state.results
   if(posts){
@@ -24,7 +27,7 @@ function Post(props: any) {
       return (
         <div key={index} className="col-lg-6 col-md-6 col-sm-12">
         <div className="card_item_post">
-          <img className="card_item_post_image" src="/images/hinh3.jpg" alt=""/>
+          <img className="card_item_post_image" src={ post.image ?   post.image.url_image :  '/images/hinh3.jpg' } alt=""/>
           <div className="card_item_post-content">
             <h5><Link to={`/posts/${post._id}`}>{post.title}</Link> </h5>
             <div className="card_item_post-info">
@@ -41,7 +44,7 @@ function Post(props: any) {
             </div>
           </div>
           <div className="card_item_post-content-body">
-            <p className="post-content-body_text">{parse(post.content)}</p>
+            <p className="post-content-body_text" dangerouslySetInnerHTML={createMarkup(post.content)} ></p>
             <p className="post-content-body_btn"><Link to={`/posts/${post._id}`}>Read more</Link> <i className="fas fa-long-arrow-alt-right"></i></p>
           </div>
         </div>

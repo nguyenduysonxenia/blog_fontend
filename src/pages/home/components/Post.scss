@@ -20,6 +20,7 @@
 	box-sizing: border-box;
 	padding: 20px;
 	>h5 {
+		max-height: 100px;
 		font-size: 20px;
 		overflow-wrap: break-word;
 		font-weight: 700;
@@ -50,7 +51,7 @@
 }
 .post-content-body_text {
 	overflow: hidden;
-	height:100px;
+	max-height:100px;
 	color: #666666;
 	box-sizing: border-box;
 	border-width: 0;

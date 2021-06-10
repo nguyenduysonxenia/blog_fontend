@@ -1,4 +1,4 @@
-import React, { useEffect,useCallback } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SocialLink from '../../components/SocialLink/Social';
@@ -9,6 +9,7 @@ import OtherPost from './components/OtherPost';
 import ListComment from './components/ListComment';
 import { useDispatch, useSelector } from 'react-redux';
 import postApi from '../../api/PostAPI';
+import LoadingBG from '../../components/Loading/LoadingBG'
 import {
   getPost,
   getComments,
@@ -21,6 +22,7 @@ interface Params {
   postId: string;
 }
 function Index(props: any) {
+  const [loading,setLoading] = useState(true)
   const showComment = useSelector(
     (state: any) => state.DetailPostPage.showComment,
   );
@@ -28,7 +30,7 @@ function Index(props: any) {
   const dispatch = useDispatch();
   const history = props.history;
   const params: Params = useParams();
-  const fetchPost = useCallback(async () => {
+  const fetchPost = async () => {
     const response: any = await postApi.getPost(params.postId).catch((err) => {
       history.push('/notfound');
     });
@@ -52,8 +54,9 @@ function Index(props: any) {
       let isLike = isExist == -1 ? false : true;
       const actionLike = toggleLike(isLike);
       dispatch(actionLike);
+      setLoading(false)
     }
-  },[]);
+  };
   const fetchViews = async () => {
     try{
       const response: any = await postApi.view(params.postId)
@@ -64,10 +67,11 @@ function Index(props: any) {
   useEffect(() => {
     fetchPost();
     fetchViews();
-  }, []);
+  }, [params]);
   return (
     <div>
       <React.Fragment>
+        {loading ? <LoadingBG/> : ''}
         <div className="container">
           <div className="row mt-4">
             <div className="col-lg-8 col-md-12 col-sm-12">

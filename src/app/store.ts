@@ -4,11 +4,13 @@ import HomeSlice from '../pages/home/HomeSlice'
 import DetailPostSlice from '../pages/detailPost/DetailPpstSlice'
 import UserSlice from '../pages/user/UserSlice'
 import ListPostSlice from '../pages/listPost/ListPostSlice'
+import EditPostSlice from '../pages/editPost/EditPostSlice'
 const rootReducer = {
   HomePage: HomeSlice,
   DetailPostPage: DetailPostSlice,
   CurrentUser: UserSlice,
-  ListPostPage: ListPostSlice
+  ListPostPage: ListPostSlice,
+  EditPostPage: EditPostSlice
 }
 const store = configureStore({
   reducer:rootReducer

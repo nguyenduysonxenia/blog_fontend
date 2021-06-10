@@ -3,17 +3,19 @@ import { Form, Button, Col, Image, Container } from 'react-bootstrap';
 import logo from '../../assets/images/logo.jpg';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import {Link} from 'react-router-dom'
 import userApi from '../../api/UserAPI'
-import {useState} from 'react'
 import {useHistory} from 'react-router-dom'
-import Alert from '../Alert/Alert'
+import { toast } from 'react-toastify';
 import {useDispatch} from 'react-redux'
+import {setToken,checkToken} from '../../Authen'
 import {setCurrentUser} from '../../pages/user/UserSlice'
 const Signin = () => {
-  const dispatch = useDispatch();
-  const [isShow,setIsShow] = useState(false);
-  const [error,setEroor] = useState('');
   const history = useHistory();
+  if(checkToken()){
+    history.push('/')
+  }
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -26,7 +28,6 @@ const Signin = () => {
       password: Yup.string().required('Required').min(6, 'Minium 6 characters'),
     }),
     onSubmit: (values) => {
-      setIsShow(false);
       const signin = async ()=>{
         try{
             let result = await userApi.login(values)
@@ -35,12 +36,12 @@ const Signin = () => {
               let response = await userApi.getCurrentUser()
               const action  = setCurrentUser(response);
               dispatch(action);
+              setToken()
               history.goBack();
             }
         }
         catch(err: any){
-          setIsShow(true);
-            setEroor(err.response.data)
+          toast.warning(` 🦄 ${err.response.data} `,{ position:"top-center" })
         }
       }
       signin();
@@ -90,8 +91,10 @@ const Signin = () => {
           <Button variant="primary" type="submit" className="button">
             Signin
           </Button>
+          <div className="link_register">
+            <Link to="/signup">No account/Signup ?</Link>
+          </div>
         </Form>
-        {isShow ? <Alert isShow={isShow} message={error}  /> : ''}
       </Container>
     </>
   );
