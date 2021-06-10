@@ -6,10 +6,19 @@ interface Post{
 }
 
 const postApi = {
-  getListPosts: () =>{
-      const url: string = '/posts'
+  getListPosts: (params?: any) =>{
+    let url: string =
+     params
+      ?
+       `/posts?page=${params.page}&limit=${params.limit}`
+      :
+       `/posts`
       return asxiosClient.get(url,{})
   },
+  getListPostsOfUser: (params?: any) =>{
+    const url: string = `/posts/user?page=${params.page}&limit=${params.limit}`
+    return asxiosClient.get(url,{})
+},
   getPostsNew: ()=>{
     const url: string = '/posts/new'
     return asxiosClient.get(url,{})
@@ -20,6 +29,10 @@ const postApi = {
   },
   getListSearch: (queryString: string)=>{
     const url:string = `/posts/search?key=${queryString}`
+    return asxiosClient.get(url)
+  },
+  getListSearchofUser: (queryString: string)=>{
+    const url:string = `/posts/search/user?key=${queryString}`
     return asxiosClient.get(url)
   },
   getPost: (params: string)=>{
@@ -45,6 +58,10 @@ const postApi = {
   createPost: (body: any)=>{
     const url:string = `/posts`
     return asxiosClient.post(url, body)
+  },
+  deletedPost: (id: any)=>{
+    const url:string = `/posts/${id}`
+    return asxiosClient.delete(url)
   }
 }
 export default postApi;
