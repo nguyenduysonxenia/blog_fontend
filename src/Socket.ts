@@ -12,12 +12,12 @@ export const listenNotifycation = (socket:any)=>{
     socket.on('server-send-notification',function(data: any){
       let windows: any = window
       let currentUser =  windows.currentUser;
-      let {post,authorComment} = data;
+      let {post, authorComment, username} = data;
       console.log(post,authorComment,currentUser)
       if(currentUser.id && post.authors_id.toString() == currentUser.id.toString()
        && authorComment.toString() != currentUser.id.toString()){
          console.log('hahah')
-        toast('Someone commented on your post')
+         toast(` 🦄 ${username} Someone commented on your post`,{ position:"top-center", autoClose: 10000, })
       }
     })
 

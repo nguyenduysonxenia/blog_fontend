@@ -6,7 +6,6 @@ import {useDispatch,useSelector} from 'react-redux'
 import {postComment,postSubComment} from '../DetailPpstSlice'
 import postApi from '../../../api/PostAPI'
 import { useHistory } from 'react-router-dom';
-import {io} from 'socket.io-client'
 import {emitNotifycation} from '../../../Socket'
 import {SocketContext} from '../../../Socket'
 function FormPostComment(props: any) {
@@ -36,7 +35,7 @@ function FormPostComment(props: any) {
       const action = postComment(body)
       distPatch(action)
     }
-    clientSend({postId,authorComment: response.author});
+    clientSend({postId,authorComment: response.author,username:currentUser.username});
   }
   const formik = useFormik({
     initialValues: {
@@ -68,7 +67,7 @@ function FormPostComment(props: any) {
 
 FormPostComment.propTypes = {
   postId: PropTypes.string,
-  parentComment: PropTypes.any
+  parentComment: PropTypes.any,
 }
 
 export default FormPostComment
