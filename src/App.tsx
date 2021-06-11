@@ -5,6 +5,7 @@ import DetailPost from './pages/detailPost/Index'
 import Signup from './components/Signup/Signup'
 import Signin from './components/Signin/Signin'
 import AddPost from './pages/addPost/Index'
+import ListPost from './pages/listPost/Index'
 import {SocketContext, socket } from "./Socket";
 import PrivateRoute from './PrivateRouter'
 import {useSelector} from 'react-redux'
@@ -25,6 +26,7 @@ function App() {
           <Route path="/posts/new" exact component={AddPost} />
           {/* <PrivateRoute path="/posts/new" exact component={AddPost}   /> */}
           <Route path="/posts/:postId" exact component={DetailPost} />
+          <Route path="/posts" exact component={ListPost} />
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
 
