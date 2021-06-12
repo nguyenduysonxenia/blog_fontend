@@ -8,7 +8,7 @@ import postApi from '../../../api/PostAPI';
 function OtherPost(props: any) {
   const history  = useHistory();
   let currentUser = useSelector((state: any)=> state.CurrentUser);
-  const {isLike,Post,countViews,countLikes} = useSelector((state: any)=> state.DetailPostPage)
+  const {islike,Post,countViews,countLikes} = useSelector((state: any)=> state.DetailPostPage)
   const disPatch = useDispatch();
   const handleComment = ()=>{
     const action  = toggleComment('');
@@ -20,9 +20,9 @@ function OtherPost(props: any) {
     }
     try {
       const response: any  = await postApi.like(Post._id)
-      console.log(response);
       let isExist = response.likes.findIndex((u:string)=>u.toString() == currentUser.id.toString())
       let islike = isExist != -1 ? true : false
+
       const action = toggleLike(islike);
       const actionView = setCountView(response.views);
       const actioncountLike = setCountLike(response.likes.length);
@@ -44,7 +44,7 @@ function OtherPost(props: any) {
         <i className="far fa-eye"></i>
         <span>{countViews}</span>
       </div>
-      <div onClick={handleLike} className={`post-info-other-like ${isLike ? 'active_like' : ''}`}>
+      <div onClick={handleLike} className={`post-info-other-like ${islike ? 'active_like' : ''}`}>
       <i className="far fa-thumbs-up"></i>
         <span>{countLikes}</span>
       </div>

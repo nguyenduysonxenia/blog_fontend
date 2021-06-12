@@ -7,16 +7,11 @@ interface Post{
 
 const postApi = {
   getListPosts: (params?: any) =>{
-    let url: string =
-     params
-      ?
-       `/posts?page=${params.page}&limit=${params.limit}`
-      :
-       `/posts`
+    let url: string =`/posts?page=${params.page}`
       return asxiosClient.get(url,{})
   },
   getListPostsOfUser: (params?: any) =>{
-    const url: string = `/posts/user?page=${params.page}&limit=${params.limit}`
+    const url: string = `/posts/user?page=${params.page}`
     return asxiosClient.get(url,{})
 },
   getPostsNew: ()=>{
@@ -66,6 +61,18 @@ const postApi = {
   editPost: (body: any,idPost: any)=>{
     const url:string = `/posts/${idPost}`
     return asxiosClient.patch(url, body)
+  },
+  getListPostOfAdmin: (params: any)=>{
+    const url:string = `/admin/posts/getListPost?page=${params.page}`
+    return asxiosClient.get(url)
+  },
+  togleDeletePost: (idPost: any)=>{
+    const url: string = `/admin/posts/${idPost}/destroy`
+    return asxiosClient.patch(url)
+  },
+  getView: ()=>{
+    const url: string = `/admin/views`
+    return asxiosClient.get(url)
   }
 }
 export default postApi;

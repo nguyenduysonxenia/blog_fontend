@@ -1,14 +1,13 @@
 import {Route,Redirect} from 'react-router-dom';
 import React from 'react'
-import {checkLogin} from './Authen'
-function PrivateRoute({isAuth: isAuth, component: Component,...rest}: any){
+import {checkAdmin} from './Authen'
+
+function PrivateAdminRouter({isAuth:isAuth, component: Component,...rest}: any){
   const routeComponent = (props: any) => (
             isAuth
             ? React.createElement(Component, props)
-            :  <Redirect to="/signin" />
+            :  <Redirect to="/" />
     );
   return <Route {...rest} render={routeComponent}/>
 }
-
-
-export default PrivateRoute;
+export default PrivateAdminRouter;

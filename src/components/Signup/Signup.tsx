@@ -7,7 +7,12 @@ import userApi from '../../api/UserAPI'
 import  { withRouter } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import {removeToken} from '../../Authen'
+import {checkLogin} from '../../Authen'
 const Signup = (props: any) => {
+  const isLogin = checkLogin();
+  if(isLogin){
+    props.history.push('/');
+  }
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -32,7 +37,8 @@ const Signup = (props: any) => {
           const data = await userApi.register(values);
           if(data){
             removeToken()
-            props.history.push("/signin")
+            toast.success(` 🦄 ${data} `,{ position:"top-center" })
+            // props.history.push("/signin")
           }
         }
         catch(err: any){
@@ -116,8 +122,6 @@ const Signup = (props: any) => {
             Signup
           </Button>
         </Form>
-
-
       </Container>
   );
 };

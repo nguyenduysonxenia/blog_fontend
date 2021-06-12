@@ -7,8 +7,10 @@ import {setCurrentUser,logout} from '../../pages/user/UserSlice'
 import {useDispatch,useSelector} from 'react-redux'
 import {listenNotifycation} from '../../Socket'
 import {SocketContext} from '../../Socket'
-
+import {removeToken} from '../../Authen'
+import {useLocation} from 'react-router-dom'
 function Header(props: any) {
+
   const socket = React.useContext(SocketContext);
   const dispatch = useDispatch();
   const currentUser = useSelector((state: any)=> state.CurrentUser);
@@ -16,7 +18,7 @@ function Header(props: any) {
   const getCurrentUser = useCallback(async () =>{
     const token = localStorage.getItem('accessToken');
     if(token){
-      let response = await apiUser.getCurrentUser()
+      let response: any = await apiUser.getCurrentUser()
       .catch((error: any)=>{
         console.log(error);
       })
@@ -33,6 +35,7 @@ function Header(props: any) {
       admin: null
     })
     dispatch(action);
+    removeToken();
   }
   useEffect(()=>{
     getCurrentUser()
@@ -72,26 +75,33 @@ function Header(props: any) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/Posts/new" className="nav-link" href="#">
+                  <Link to="/posts/new" className="nav-link" href="#">
                     Post
                   </Link>
                 </li>
 
                 {
                   currentUser.username ?
-                  (
+                  ( <>
+                    <li className="nav-item">
+                      <Link to="/admin" className="nav-link" href="#">
+                        DashBoard
+                      </Link>
+                    </li>
                     <li className="nav-item item_info_user">
                       <Link to="/login" className="nav-link" href="#">
-                        <img className="img_info_user" src='/images/hinh3.jpg'  />
+                        <img className="img_info_user" src={ currentUser.avatar ? currentUser.avatar.url_image : '/images/userDefault.png'}  />
                         {currentUser.username}
                       </Link>
                       <ul className="User-Dropdown">
-                        <li className="dropdown_user-item" ><Link to='/profile'>Setting</Link></li>
+                        <li className="dropdown_user-item" ><Link to='/profile'>Profile</Link></li>
+                        <li className="dropdown_user-item" ><Link to='/editPassword'>Setting</Link></li>
                         <li className="dropdown_user-item" ><Link to='/posts'>Post</Link></li>
-                        <li className="dropdown_user-item" ><Link to='profile'>Notifycations</Link><span>40</span></li>
+                        <li className="dropdown_user-item" ><Link to='/notification'>Notifycations</Link><span>40</span></li>
                         <li onClick={handleLogout} className="dropdown_user-item" ><Link to=''>Log out</Link></li>
                       </ul>
                     </li>
+                    </>
                   )
                   :
                   (

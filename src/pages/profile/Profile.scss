@@ -1,0 +1,100 @@
+.form-material {
+	.form-group {
+		overflow: hidden;
+	}
+	.form-control {
+		background-color: rgba(0, 0, 0, 0);
+		background-position: center bottom, center calc(100% - 1px);
+		background-repeat: no-repeat;
+		background-size: 0 2px, 100% 1px;
+		padding: 0;
+		transition: background 0s ease-out 0s;
+		background-image: linear-gradient(#20aee3, #20aee3), linear-gradient(#e9edf2, #e9edf2);
+		border: 0 none;
+		border-radius: 0;
+		box-shadow: none;
+		float: none;
+		&:focus {
+			background-image: linear-gradient(#20aee3, #20aee3), linear-gradient(#e9edf2, #e9edf2);
+			border: 0 none;
+			border-radius: 0;
+			box-shadow: none;
+			float: none;
+			background-size: 100% 2px, 100% 1px;
+			outline: 0 none;
+			transition-duration: 0.3s;
+		}
+	}
+	.form-control.focus {
+		background-image: linear-gradient(#20aee3, #20aee3), linear-gradient(#e9edf2, #e9edf2);
+		border: 0 none;
+		border-radius: 0;
+		box-shadow: none;
+		float: none;
+		background-size: 100% 2px, 100% 1px;
+		outline: 0 none;
+		transition-duration: 0.3s;
+	}
+}
+.form-control-line {
+	.form-group {
+		overflow: hidden;
+	}
+	.form-control {
+		border: 0px;
+		border-radius: 0px;
+		padding-left: 0px;
+		border-bottom: 1px solid #f6f9ff;
+		&:focus {
+			border-bottom: 1px solid #20aee3;
+		}
+	}
+}
+.img-circle {
+	border-radius: 100%;
+	object-fit: cover;
+}
+.title_username{
+	font-size: 16px;
+	text-align: center;
+	margin: 10px 0;
+}
+.title_email{
+	font-size :20px;
+	text-align: center;
+	margin: 10px 0;
+}
+.card-wrap-info{
+	height:100%
+}
+.wrap_image_user{
+	display:flex;
+	justify-content: center;
+
+}
+.select_file_image_user{
+	border:1px solid #20aee3 !important;
+	transition:0.3s;
+	&:hover{
+    opacity: .75;
+	}
+}
+.btn-submit_profile{
+	background-color:#20aee3;
+	color:#f6f9ff;
+	transition:.2;
+	&:hover{
+		opacity: .75;
+		color:#f6f9ff;
+	}
+}
+.label-error{
+	padding-left: 20px;
+	.error-validator{
+		font-size: 16px;
+		margin-left: 10px;
+	}
+}
+.edit_password_wrap{
+	text-align: center;
+}

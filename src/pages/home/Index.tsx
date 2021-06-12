@@ -8,21 +8,32 @@ import Pagination from '../../components/Pagination/Pagination'
 import SocialLink from '../../components/SocialLink/Social'
 import ListPostNew from '../../components/ListPostNew/ListPostnew'
 import Footer from '../../components/Footer/Footer'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import postApi from '../../api/PostAPI'
 import {useEffect} from 'react'
-import {getListPost,getlistPostNew,getListPostHot} from './HomeSlice'
+import {getListPost,getlistPostNew,getListPostHot,setPagination} from './HomeSlice'
 import LoadingBG from '../../components/Loading/LoadingBG'
 function Index(props: any) {
+  const pagination: any = useSelector((state: any)=> state.HomePage.pagination);
+  const [page,setPage] = useState(1)
   const [loading,setLoading] = useState(true)
   const dispatch = useDispatch()
+  const handlePageChange = (newPage :any)=>{
+    setPage(newPage)
+  }
     const fetchPosts = async ()=>{
-      const response = await postApi.getListPosts()
+      const response: any = await postApi.getListPosts({page:page})
         .catch((err: any)=>{
             console.log(err)
         })
-        const action = getListPost(response)
+        console.log(response)
+        const action = getListPost(response.result)
         dispatch(action)
+        dispatch(setPagination({
+          page: response.page,
+          limit: response.limit,
+          total: response.totalRow
+        }))
     }
     const fetchPostsHot = async()=>{
         const response = await postApi.getPostsHot()
@@ -45,8 +56,7 @@ function Index(props: any) {
       fetchPosts()
       fetchPostsHot()
       fetchPostNew()
-
-    },[])
+    },[page])
 
   return (
       <React.Fragment>
@@ -74,7 +84,7 @@ function Index(props: any) {
           </div>
           <div className="row">
             <div className="col-lg-12">
-                <Pagination/>
+                <Pagination pagination={pagination} onPageChange={handlePageChange}/>
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ function Post(props: any) {
     return {__html: data};
   }
   const state: any = useSelector((state: RootState)=>state.HomePage.listPost)
-  let posts = state.results
+  let posts = state.result
   if(posts){
     var result = posts.map((post: Post, index: number)=>{
       return (
