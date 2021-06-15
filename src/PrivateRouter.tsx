@@ -1,11 +1,12 @@
-import {Route,useHistory} from 'react-router-dom';
+import {Route,Redirect} from 'react-router-dom';
 import React from 'react'
-function PrivateRoute({isAuth: isAuth, component: Component,...rest}: any){
-  const history = useHistory();
+import {checkLogin} from './Authen'
+function PrivateRoute({ component: Component,...rest}: any){
+  const isLogin: any = checkLogin()
   const routeComponent = (props: any) => (
-           isAuth
+            isLogin
             ? React.createElement(Component, props)
-            : history.replace('/signin')
+            :  <Redirect to="/signin" />
     );
   return <Route {...rest} render={routeComponent}/>
 }

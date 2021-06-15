@@ -11,7 +11,7 @@ function PostChild(props: any) {
   let results = posts.map((post: any, index: number)=>{
     return (
       <div key={index} className="post_item_child">
-        <img src={IMAGE_DEFAULT} alt="" width="80" height="80"/>
+        <img src={ post.image ?   post.image.url_image :  '/images/hinh3.jpg' } alt="" width="80" height="80"/>
         <div className="post_item_child-content">
           <h5> <Link to={`/posts/${post._id}`}>{post.title}</Link> </h5>
           <time className="detail_post-author" >

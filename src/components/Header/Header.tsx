@@ -44,9 +44,9 @@ function Header(props: any) {
       <div className="container">
         <div className="row">
           <nav className="navbar navbar-expand-lg navbar-light navbar_header ">
-            <a className="navbar-brand logo_menu" href="#">
-              Stein
-            </a>
+            <Link className="navbar-brand logo_menu" to="/">
+              Xenia
+            </Link>
             <button
               className="navbar-toggler"
               type="button"

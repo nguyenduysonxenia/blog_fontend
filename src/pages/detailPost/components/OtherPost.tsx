@@ -15,8 +15,7 @@ function OtherPost(props: any) {
     disPatch(action)
   }
   const handleLike = async ()=>{
-    const token = localStorage.getItem('accessToken');
-    if(!token){
+    if(!currentUser.id){
       return history.replace('/signin')
     }
     try {

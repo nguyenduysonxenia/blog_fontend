@@ -31,7 +31,9 @@ function Index(props : any) {
     <div className="container">
       <div className="row">
         <div className="col-lg-12">
-           <h1 className="title_add_post">addPost</h1>
+        <div className="title_add_post_wrap">
+              <h1 className="title_add_post">ADD Post</h1>
+          </div>
         </div>
       </div>
         <FormPost handleSubmit={handleSubmit}  />

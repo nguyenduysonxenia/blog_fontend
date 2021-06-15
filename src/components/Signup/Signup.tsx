@@ -1,16 +1,13 @@
 import './Signup.scss';
-import {useState} from 'react'
 import { Form, Button, Col, Image, Container } from 'react-bootstrap';
 import logo from '../../assets/images/logo.jpg';
 import { useFormik,Formik } from 'formik';
 import * as Yup from 'yup';
 import userApi from '../../api/UserAPI'
-import Alert from '../Alert/Alert'
-import  { Redirect,withRouter } from 'react-router-dom'
-
+import  { withRouter } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import {removeToken} from '../../Authen'
 const Signup = (props: any) => {
-  const [isShow,setIsShow] = useState(false);
-  const [error,setEroor] = useState('');
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -30,17 +27,16 @@ const Signup = (props: any) => {
         .oneOf([Yup.ref('password')], "Password's not match"),
     }),
     onSubmit: (values)=>{
-      setIsShow(false);
       const createUser = async ()=>{
         try{
           const data = await userApi.register(values);
           if(data){
+            removeToken()
             props.history.push("/signin")
           }
         }
         catch(err: any){
-          setIsShow(true);
-          setEroor(err.response.data)
+          toast.warning(` 🦄 ${err.response.data} `,{ position:"top-center" })
         }
       }
       createUser();
@@ -48,7 +44,7 @@ const Signup = (props: any) => {
   });
   return (
       <Container className="form-container">
-        <Form className="form" onSubmit={formik.handleSubmit}>
+        <Form className="form form_register" onSubmit={formik.handleSubmit}>
           <Col xs={6} md={4}>
             <Image src={logo} roundedCircle className="image-logo" />
           </Col>
@@ -120,7 +116,8 @@ const Signup = (props: any) => {
             Signup
           </Button>
         </Form>
-        {isShow ? <Alert isShow={isShow} message={error}  /> : ''}
+
+
       </Container>
   );
 };

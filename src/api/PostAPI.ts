@@ -62,6 +62,10 @@ const postApi = {
   deletedPost: (id: any)=>{
     const url:string = `/posts/${id}`
     return asxiosClient.delete(url)
+  },
+  editPost: (body: any,idPost: any)=>{
+    const url:string = `/posts/${idPost}`
+    return asxiosClient.patch(url, body)
   }
 }
 export default postApi;

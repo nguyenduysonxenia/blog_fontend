@@ -20,7 +20,9 @@
   background-color: transparent;
   z-index: 999;
 }
-
+.overlay_bg{
+  background-color: white;
+}
 .arc {
   position: relative;
   width: var(--dimension);

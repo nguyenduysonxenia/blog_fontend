@@ -6,6 +6,9 @@ import {useSelector} from 'react-redux'
 import Moment from 'react-moment';
 function Post(props: any) {
   const post = useSelector((state: any)=> state.DetailPostPage.Post);
+  function createMarkup(data: string) {
+    return {__html: data};
+  }
   return (
     post ?
     <div className="post_deltail">
@@ -29,8 +32,7 @@ function Post(props: any) {
             <Moment toNow>{post.createdAt}</Moment>
             </span>
         </div>
-        <div className="post_deltail-content-text">
-          {post.content}
+        <div className="post_deltail-content-text" dangerouslySetInnerHTML={createMarkup(post.content)}>
         </div>
       </div>
     </div>
