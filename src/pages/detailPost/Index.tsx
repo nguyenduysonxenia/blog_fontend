@@ -44,12 +44,12 @@ function Index(props: any) {
       dispatch(actionComment);
       dispatch(actionView);
       dispatch(actioncountLike);
-      console.log(currentUser);
       var isExist = -1;
       if (currentUser.id) {
         isExist = response.likes.findIndex(
           (u: any) => u.toString() === currentUser.id.toString(),
         );
+        console.log(isExist,currentUser)
       }
       let isLike = isExist == -1 ? false : true;
       const actionLike = toggleLike(isLike);
@@ -67,7 +67,7 @@ function Index(props: any) {
   useEffect(() => {
     fetchPost();
     fetchViews();
-  }, [params]);
+  }, [params,currentUser]);
   return (
     <div>
       <React.Fragment>

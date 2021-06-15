@@ -9,6 +9,7 @@
 		line-height: 30px;
 		margin: 0 5px;
 		a {
+			cursor: pointer;
 			display: block;
 			text-decoration: none;
 			color: #383838;
@@ -47,4 +48,17 @@
 }
 .page-item {
 	cursor: pointer;
+}
+.disable_btn{
+	cursor: default !important;
+	color:#989797 !important;
+	a{
+		cursor: no-drop !important;
+		color:#989797 !important;
+	}
+}
+@media only screen and (max-width:500px){
+	.d-none-item{
+		display: none ;
+	}
 }

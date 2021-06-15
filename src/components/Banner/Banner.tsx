@@ -1,7 +1,10 @@
 import react from 'react';
 import './Banner.scss';
 import PostChild from '../postChild/PostChild';
+import {Link} from 'react-router-dom'
+import { useSelector } from 'react-redux';
 const Banner = () => {
+  const PostHot  = useSelector((state: any)=> state.HomePage.listPostHot)
   return (
     <div className="banner">
       <div
@@ -44,19 +47,19 @@ const Banner = () => {
                 <div className="baner_content-title-info">
                   <h6>Post</h6>
                   <h2>
-                    <a href="">
-                      Physical Exercise to Boost Your Brain and Stamina
-                    </a>
+                    <Link to={`/posts/${PostHot[0] && PostHot[0]._id}`}>
+                      { PostHot[0] ? PostHot[0].title : ''}
+                    </Link>
                   </h2>
                   <div className="detail_post">
                     <span className="detail_post-author">
                       <span>By</span>
                       <a href="">Duy Son</a>
                     </span>
-                    <time className="detail_post-author">April 28, 2019</time>
+                    <time className="detail_post-author">{new Intl.DateTimeFormat('en-GB', { dateStyle: 'long' }).format(new Date(PostHot[0] ? PostHot[0].createdAt : null))}</time>
                     <span className="detail_post-view">
                       <i className="fas fa-eye"></i>
-                      <span className="view_count_number">2.6k</span>
+                      <span className="view_count_number">{ PostHot[0] && PostHot[0].views }</span>
                       <span className="view_count_label">Views</span>
                     </span>
                   </div>

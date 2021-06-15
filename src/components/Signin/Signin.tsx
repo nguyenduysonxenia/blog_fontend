@@ -30,13 +30,16 @@ const Signin = () => {
     onSubmit: (values) => {
       const signin = async ()=>{
         try{
-            let result = await userApi.login(values)
+            let result: any = await userApi.login(values)
             if(result){
               localStorage.setItem('accessToken',JSON.stringify(result))
-              let response = await userApi.getCurrentUser()
+              let response: any = await userApi.getCurrentUser()
               const action  = setCurrentUser(response);
               dispatch(action);
-              setToken()
+              setToken(response.admin);
+              if(response.admin){
+                return history.push('/admin')
+              }
               history.goBack();
             }
         }

@@ -15,16 +15,32 @@ export const checkLogin = ()=>{
    }
 }
 
-export const setToken = ()=>{
+export const setToken = (role:any)=>{
   const token = jwt.sign({ isLogin: true }, screct);
-  localStorage.setItem('authenToken',token)
+  localStorage.setItem('authenToken',token);
+  const roletoken = jwt.sign({ admin: role }, screct);
+  localStorage.setItem('roleToken',roletoken)
 }
 export const removeToken = ()=>{
+  localStorage.removeItem('accessToken')
   localStorage.removeItem('authenToken')
+  localStorage.removeItem('roleToken')
 }
 export const checkToken = ()=>{
   const token = localStorage.getItem('accessToken')
   if(token)
      return true;
   return false;
+}
+export const checkAdmin = ()=>{
+  const token: any = localStorage.getItem('roleToken')
+  if(!token)
+    return false;
+  try {
+    let results: any = jwt.verify(token, screct)
+    if(results)
+       return results.admin
+  } catch (error) {
+   return false;
+  }
 }
