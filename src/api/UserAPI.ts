@@ -34,6 +34,14 @@ const userApi = {
   toggleUser:(idUser: any)=>{
     const url: string = `/admin/users/${idUser}/destroy`
     return asxiosClient.patch(url)
+  },
+  sendEmail:(email: any)=>{
+    const url: string = '/users/sendEmail'
+    return asxiosClient.post(url,email)
+  },
+  resetPassword:(data: any,token: any)=>{
+    const url: string = `/users/resetPassword/${token}`
+    return asxiosClient.patch(url,data)
   }
 }
 export default userApi;

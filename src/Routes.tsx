@@ -16,6 +16,8 @@ import EditPassword from './pages/editPassword/index'
 import AdminHome from './pages/adminHome/Index'
 import NotFound from './components/Notfound/NotFound'
 import AdminUser from './pages/adminUser/Index'
+import FormReset from './pages/ResetPassword/Index'
+import FormForgot from './pages/ResetPassword/components/FormSendEmail'
 import {checkShowHeader} from "./utils/CheckShow";
 import {useLocation} from 'react-router-dom'
 import {checkAdmin,checkLogin} from './Authen'
@@ -41,8 +43,10 @@ function Routes(props: any) {
           <PrivateRoute isAuth={isLogin} path="/posts" exact component={ListPost} />
           <PrivateRoute isAuth={isLogin} path="/profile" exact component={Profile} />
           <PrivateRoute isAuth={isLogin} path="/editPassword" exact component={EditPassword}   />
+          <Route path="/forgot" component={FormForgot} />
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
+          <Route path="/forgotPassword/:token" component={FormReset} />
           <PrivateAdminRoute isAuth={isAdim} path="/admin/users" exact component={AdminUser} />
           <PrivateAdminRoute isAuth={isAdim} path="/admin" exact component={AdminHome} />
           <Route path='*' exact={true} component={NotFound} />
