@@ -44,7 +44,7 @@ function Table(props: any) {
         <tr className="title_table_admin">
           <th>STT</th>
           <th>Title</th>
-          <th>views</th>
+          <th>Views</th>
           <th>Comment</th>
           <th>Like</th>
           <th>Status</th>

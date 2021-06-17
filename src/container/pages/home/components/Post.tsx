@@ -5,8 +5,7 @@ import {RootState}  from '../../../../redux/app/store'
 import {Link} from 'react-router-dom'
 import Moment from 'react-moment';
 import {useSelector} from 'react-redux'
-import parse from 'html-react-parser';
-
+import {IMAGE_DEFAULT} from '../../../../service/api/constants'
 interface Post{
   _id: string
   title: string,
@@ -27,7 +26,7 @@ function Post(props: any) {
       return (
         <div key={index} className="col-lg-6 col-md-6 col-sm-12">
         <div className="card_item_post">
-          <img className="card_item_post_image" src={ post.image ?   post.image.url_image :  '/images/hinh3.jpg' } alt=""/>
+          <img className="card_item_post_image" src={ post.image.url_image ? post.image.url_image : IMAGE_DEFAULT } alt=""/>
           <div className="card_item_post-content">
             <h5><Link to={`/posts/${post._id}`}>{post.title}</Link> </h5>
             <div className="card_item_post-info">

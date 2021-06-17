@@ -32,7 +32,7 @@ function Index(props: any) {
   const params: Params = useParams();
   const fetchPost = async () => {
     const response: any = await postApi.getPost(params.postId).catch((err) => {
-      history.push('/notfound');
+      history.replace('/notfound');
     });
     if (response) {
       const comments = await postApi.getComments(response._id);
@@ -66,6 +66,10 @@ function Index(props: any) {
   useEffect(() => {
     fetchPost();
     fetchViews();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }, [params,currentUser]);
   return (
     <div>

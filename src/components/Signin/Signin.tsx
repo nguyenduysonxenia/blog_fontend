@@ -89,10 +89,10 @@ const Signin = () => {
             )}
           </Form.Group>
           <Form.Group controlId="formBasicCheckbox">
-          <Link className="btn_forgot" to="/forgot">forgot Password?</Link>
+          <Link className="btn_forgot" to="/forgot">Forgot Password?</Link>
           </Form.Group>
           <Button variant="primary" type="submit" className="button">
-            Signin
+            Sign In
           </Button>
           <div className="link_register">
             <Link to="/signup">No account/Signup ?</Link>

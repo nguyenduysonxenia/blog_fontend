@@ -119,7 +119,7 @@ const Signup = (props: any) => {
           </Form.Group>
 
           <Button variant="primary" type="submit" className="button">
-            Signup
+            Sign Up
           </Button>
         </Form>
       </Container>
