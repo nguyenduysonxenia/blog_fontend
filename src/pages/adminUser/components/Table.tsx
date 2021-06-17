@@ -19,11 +19,12 @@ function Table(props: any) {
   }
   let renderList = listUser.map((user: any,index: number)=>{
     return (
-      <tr key={index}>
-          <th scope="row">{index +1}</th>
+      <tr className="title_row_admin" key={index}>
+          <td scope="row">{index +1}</td>
           <td>{user.username}</td>
-          <th>{user.email}</th>
-          <td>{user.deleted ? 'Deleted' : 'Active'}</td>
+          <td>{user.email}</td>
+          <td><span className={`content_activate ${user.activate ? 'content_activate_true' : 'content_activate_pending'}`}>{user.activate ? 'activate' : 'not activated'}</span></td>
+          <td><span className={`content_activate ${user.deleted ? 'content_activate_false' : 'content_activate_true'}`} >{user.deleted ? 'unBlock' : 'Block'}</span></td>
           <td><ButtonOtherUser id={user._id} deleted ={user.deleted}  handleDeleteProps={handleDeleteUser}/></td>
       </tr>
     )
@@ -33,11 +34,12 @@ function Table(props: any) {
      {loading ? <LoadingBG/> : ''}
     <table className="table table-responsive table-block">
       <thead>
-        <tr>
+        <tr className="title_table_admin">
           <th>STT</th>
           <th>Username</th>
           <th>Email</th>
           <th>Status</th>
+          <th>Block</th>
           <th>Other</th>
         </tr>
       </thead>

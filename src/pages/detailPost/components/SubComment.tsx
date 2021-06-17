@@ -12,7 +12,7 @@ function SubComment(props: any) {
         <img
           className="rounded-circle"
           alt="Bootstrap Media Another Preview"
-          src="https://i.imgur.com/xELPaag.jpg"
+          src={comment.authorInfo.avatar ? comment.authorInfo.avatar.url_image : 'images/userDefault.png'}
         />
       </a>
       <div className="media-body">

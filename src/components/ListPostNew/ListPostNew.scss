@@ -8,12 +8,13 @@
 }
 .recent_post_title {
 	font-size: 13px!important;
-	height:70px;
 	overflow: hidden;
-	>a {
-		height:100%;
 
-		display: block;
+	>a {
+    text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
 		color: black!important;
 	}
 }

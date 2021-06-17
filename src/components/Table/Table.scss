@@ -49,15 +49,43 @@
 
 }
 #content_post_td{
-  width: 150px;
-  height: 40px;
-  overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .react-confirm-alert-button-group >button{
   background-color: #ba68c8;
 }
 .link_move_add_post{
   margin-bottom: 20px;
+}
+.content_activate{
+  padding: 5px 14px;
+  border-radius: 24px;
+}
+.content_activate_true{
+  background-color: #86ff40;
+}
+.content_activate_false{
+  background-color: #ff405d;
+}
+.content_activate_pending{
+  background-color: #fcf25d;
+}
+.btn_togle{
+  padding: 10px 15px;
+  border-radius: 24px;
+  cursor: pointer;
+}
+.title_table_admin{
+  th{
+    text-align: center;
+  }
+}
+.title_row_admin{
+  td{
+    text-align: center;
+  }
 }
