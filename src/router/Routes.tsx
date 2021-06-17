@@ -37,18 +37,18 @@ function Routes(props: any) {
          {checkShowHeader(pathname) && <Header/>}
         <Switch>
           <Route exact path="/" component={Home} />
-          <PrivateRoute isAuth={isLogin} path="/posts/new" exact component={AddPost} />
+          <PrivateRoute isAuth={isLogin} path="/posts/new"  component={AddPost} />
           <PrivateRoute isAuth={isLogin} path="/posts/:postId/edit" exact component={EditPost} />
           <Route path="/posts/:postId" exact component={DetailPost} />
-          <PrivateRoute isAuth={isLogin} path="/posts" exact component={ListPost} />
-          <PrivateRoute isAuth={isLogin} path="/profile" exact component={Profile} />
-          <PrivateRoute isAuth={isLogin} path="/editPassword" exact component={EditPassword}   />
+          <PrivateRoute isAuth={isLogin} path="/posts"  component={ListPost} />
+          <PrivateRoute isAuth={isLogin} path="/profile"  component={Profile} />
+          <PrivateRoute isAuth={isLogin} path="/editPassword"  component={EditPassword}   />
           <Route path="/forgot" component={FormForgot} />
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
           <Route path="/forgotPassword/:token" component={FormReset} />
-          <PrivateAdminRoute isAuth={isAdim} path="/admin/users" exact component={AdminUser} />
-          <PrivateAdminRoute isAuth={isAdim} path="/admin" exact component={AdminHome} />
+          <PrivateAdminRoute isAuth={isAdim} path="/admin/users"  component={AdminUser} />
+          <PrivateAdminRoute isAuth={isAdim} path="/admin" component={AdminHome} />
           <Route path='*' exact component={NotFound} />
         </Switch>
      </SocketContext.Provider>

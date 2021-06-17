@@ -13,7 +13,7 @@ function Post(props: any) {
     post ?
     <div className="post_deltail">
       <div className="post_deltail-wrap">
-        <img className="post_deltail-wrap-image" src="/images/hinh3.jpg"/>
+        <img className="post_deltail-wrap-image" src={post.image ? post.image.url_image : '/images/hinh3.jpg'}/>
       </div>
       <div className="post_deltail-content">
         <h2 className="post_deltail-content-tile">

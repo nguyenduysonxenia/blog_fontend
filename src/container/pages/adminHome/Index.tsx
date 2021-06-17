@@ -18,6 +18,8 @@ function Index(props: any) {
   const views = useSelector((state: any)=> state.AdminHomeSlice.views);
   function handlePageChange(newPage: any){
     setPage(newPage)
+    setLoading(true)
+
   }
   const getListPostAdmin = async()=>{
       try {
@@ -37,7 +39,6 @@ function Index(props: any) {
     try {
       let response: any = await postApi.getView()
       disPatch(setView(response))
-      setLoading(false)
       } catch (error: any) {
           console.log(error)
       }
@@ -45,6 +46,7 @@ function Index(props: any) {
   useEffect(()=>{
     getListPostAdmin()
     getViewAdmin()
+    setLoading(false)
   },[page])
   return (
     <>

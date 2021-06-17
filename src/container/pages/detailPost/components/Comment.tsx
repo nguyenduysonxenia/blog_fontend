@@ -14,7 +14,7 @@ function Comment(props: any) {
           {' '}
           <img
             className="mr-3 rounded-circle"
-            src={comment.authorInfo.avatar ? comment.authorInfo.avatar.url_image : 'images/userDefault.png'}
+            src={comment.authorInfo.avatar ? comment.authorInfo.avatar.url_image : '/images/userDefault.png'}
           />
           <div className="media-body">
             <div className="row">

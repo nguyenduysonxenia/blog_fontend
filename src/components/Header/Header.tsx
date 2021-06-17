@@ -85,7 +85,7 @@ function Header(props: any) {
                   ( <>
                     {currentUser.admin && <li className="nav-item">
                       <Link to="/admin" className="nav-link" href="#">
-                        DashBoard
+                        Dashboard
                       </Link>
                     </li>}
                     <li className="nav-item item_info_user">

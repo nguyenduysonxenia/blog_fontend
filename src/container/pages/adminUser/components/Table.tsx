@@ -23,8 +23,8 @@ function Table(props: any) {
           <td scope="row">{index +1}</td>
           <td>{user.username}</td>
           <td>{user.email}</td>
-          <td><span className={`content_activate ${user.activate ? 'content_activate_true' : 'content_activate_pending'}`}>{user.activate ? 'activate' : 'not activated'}</span></td>
-          <td><span className={`content_activate ${user.deleted ? 'content_activate_false' : 'content_activate_true'}`} >{user.deleted ? 'unBlock' : 'Block'}</span></td>
+          <td><span className={`content_activate ${user.activate ? 'content_activate_true' : 'content_activate_pending'}`}>{user.activate ? 'activate' : 'pending'}</span></td>
+          <td><span className={`content_activate ${user.deleted ? 'content_activate_false' : 'content_activate_true'}`} >{user.deleted ? 'yes' : 'no'}</span></td>
           <td><ButtonOtherUser id={user._id} deleted ={user.deleted}  handleDeleteProps={handleDeleteUser}/></td>
       </tr>
     )
