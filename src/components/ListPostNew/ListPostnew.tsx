@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ListPostNew.scss';
-import {IMAGE_DEFAULT} from '../../constants'
+import {IMAGE_DEFAULT} from '../../service/api/constants'
 import {Link} from 'react-router-dom'
-import {RootState}  from '../../app/store'
+import {RootState}  from '../../redux/app/store'
 import {useSelector} from 'react-redux'
 import Moment from 'react-moment';
 function ListPostnew(props: any) {

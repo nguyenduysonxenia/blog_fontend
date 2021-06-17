@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 import './Search.scss'
 import Searchsuggest from './Searchsuggest'
-import {getListPostSearch} from '../../pages/home/HomeSlice'
+import {getListPostSearch} from '../../container/pages/home/HomeSlice'
 import {useDispatch} from 'react-redux'
-import postApi from '../../api/PostAPI'
+import postApi from '../../service/api/PostAPI'
 function Search(props: any) {
   const dispatch = useDispatch();
   const fetchPosts = async (params: string)=>{

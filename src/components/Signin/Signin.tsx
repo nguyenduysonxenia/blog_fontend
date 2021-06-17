@@ -4,12 +4,12 @@ import logo from '../../assets/images/logo.jpg';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {Link} from 'react-router-dom'
-import userApi from '../../api/UserAPI'
+import userApi from '../../service/api/UserAPI'
 import {useHistory} from 'react-router-dom'
 import { toast } from 'react-toastify';
 import {useDispatch} from 'react-redux'
-import {setToken,checkToken} from '../../Authen'
-import {setCurrentUser} from '../../pages/user/UserSlice'
+import {setToken,checkToken} from '../../utils/Authen'
+import {setCurrentUser} from '../../container/pages/user/UserSlice'
 const Signin = () => {
   const history = useHistory();
   if(checkToken()){
@@ -40,7 +40,7 @@ const Signin = () => {
               if(response.admin){
                 return history.push('/admin')
               }
-              history.goBack();
+              history.push('/')
             }
         }
         catch(err: any){

@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './PostChild.scss'
 import {Link} from 'react-router-dom'
-import {IMAGE_DEFAULT} from '../../constants'
+import {IMAGE_DEFAULT} from '../../service/api/constants'
 import Moment from 'react-moment';
-import {RootState}  from '../../app/store'
+import {RootState}  from '../../redux/app/store'
 import {useSelector} from 'react-redux'
 function PostChild(props: any) {
   const posts: any = useSelector((state: RootState)=>state.HomePage.listPostNew)
