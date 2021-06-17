@@ -70,12 +70,12 @@ function Header(props: any) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/about" className="nav-link" >
+                  <Link to="https://xenia.tech/" className="nav-link" >
                     About
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/posts/new" className="nav-link" href="#">
+                  <Link to="/posts/new" className="nav-link" >
                     Post
                   </Link>
                 </li>
@@ -83,13 +83,13 @@ function Header(props: any) {
                 {
                   currentUser.username ?
                   ( <>
-                    <li className="nav-item">
+                    {currentUser.admin && <li className="nav-item">
                       <Link to="/admin" className="nav-link" href="#">
                         DashBoard
                       </Link>
-                    </li>
+                    </li>}
                     <li className="nav-item item_info_user">
-                      <Link to="/login" className="nav-link" href="#">
+                      <Link to="" className="nav-link" >
                         <img className="img_info_user" src={ currentUser.avatar ? currentUser.avatar.url_image : '/images/userDefault.png'}  />
                         {currentUser.username}
                       </Link>

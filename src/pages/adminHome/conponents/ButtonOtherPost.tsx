@@ -22,9 +22,9 @@ function ButtonRemove(props: any) {
     });
   }
   return (
-    <button onClick={handleDeletePost} type="button" className={`btn btn-${props.deleted ? 'success' : 'danger'}`}>
+    <span onClick={handleDeletePost}  className={` btn_togle btn-${props.deleted ? 'success' : 'danger'}`}>
       {props.deleted ? <i className="fas fa-wrench"></i> : <i className="far fa-trash-alt"></i>}
-    </button>
+    </span>
   );
 }
 

@@ -8,6 +8,7 @@ import Pagination from '../../components/Pagination/Pagination'
 import SocialLink from '../../components/SocialLink/Social'
 import ListPostNew from '../../components/ListPostNew/ListPostnew'
 import Footer from '../../components/Footer/Footer'
+import BottomUp from '../../components/BottomUp/BottomUp'
 import {useDispatch, useSelector} from 'react-redux'
 import postApi from '../../api/PostAPI'
 import {useEffect} from 'react'
@@ -98,6 +99,7 @@ function Index(props: any) {
         </div>
           </div>
       </div>
+        <BottomUp/>
         <Footer/>
       </React.Fragment>
   )

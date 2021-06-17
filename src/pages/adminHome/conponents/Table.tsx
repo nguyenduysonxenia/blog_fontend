@@ -25,11 +25,13 @@ function Table(props: any) {
   }
   let renderList = listPost.map((post: any,index: number)=>{
     return (
-      <tr key={index}>
-          <th scope="row">{index +1}</th>
+      <tr className="title_row_admin" key={index}>
+          <td scope="row">{index +1}</td>
           <td id="content_post_td">{post.title}</td>
-          <th>{post.views}</th>
-          <td>{post.deleted ? 'Deleted' : 'Active'}</td>
+          <td>{post.views}</td>
+          <td>{post.comments.length}</td>
+          <td>{post.likes.length}</td>
+          <td ><span className={`content_activate ${post.deleted ? 'content_activate_false' : 'content_activate_true'}`}>{post.deleted ? 'Deleted' : 'Active'}</span></td>
           <td><ButtonOtherPost id={post._id} deleted ={post.deleted}  handleDeleteProps={handleDeletePost}/></td>
       </tr>
     )
@@ -39,18 +41,18 @@ function Table(props: any) {
      {loading ? <LoadingBG/> : ''}
     <table className="table table-responsive table-block">
       <thead>
-        <tr>
+        <tr className="title_table_admin">
           <th>STT</th>
           <th>Title</th>
           <th>views</th>
+          <th>Comment</th>
+          <th>Like</th>
           <th>Status</th>
           <th>Other</th>
         </tr>
       </thead>
       <tbody>
-
         {renderList}
-
       </tbody>
     </table>
     </>

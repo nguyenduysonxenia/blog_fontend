@@ -30,6 +30,7 @@ import{
 } from "react-router-dom";
 function Routes(props: any) {
   const pathname: any = useLocation().pathname;
+  console.log(props.match)
   const isLogin = checkLogin();
   const isAdim = checkAdmin();
   return (
@@ -49,7 +50,7 @@ function Routes(props: any) {
           <Route path="/forgotPassword/:token" component={FormReset} />
           <PrivateAdminRoute isAuth={isAdim} path="/admin/users" exact component={AdminUser} />
           <PrivateAdminRoute isAuth={isAdim} path="/admin" exact component={AdminHome} />
-          <Route path='*' exact={true} component={NotFound} />
+          <Route path='*' exact component={NotFound} />
         </Switch>
      </SocketContext.Provider>
   )
